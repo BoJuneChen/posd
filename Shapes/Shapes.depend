@@ -62,3 +62,59 @@
 	<vector>
 	<cmath>
 
+1475580371 source:d:\posd\shapes\main.cpp
+	"..\cppunitlite\TestHarness.h"
+	"utShapes.h"
+
+1475580371 d:\posd\cppunitlite\testharness.h
+	"Test.h"
+	"TestResult.h"
+	"Failure.h"
+	"TestRegistry.h"
+
+1475580371 d:\posd\cppunitlite\test.h
+	<cmath>
+	"SimpleString.h"
+
+1475580371 d:\posd\cppunitlite\simplestring.h
+
+1475580371 d:\posd\cppunitlite\testresult.h
+
+1475580371 d:\posd\cppunitlite\failure.h
+	"SimpleString.h"
+
+1475580371 d:\posd\cppunitlite\testregistry.h
+
+1475583467 d:\posd\shapes\utshapes.h
+	"..\cppunitlite\TestHarness.h"
+	"Shapes.h"
+	"Circle.h"
+	"Triangle.h"
+	"Rectangle.h"
+	<vector>
+
+1475583410 d:\posd\shapes\include\shapes.h
+	<vector>
+	<cmath>
+
+1475581814 d:\posd\shapes\include\circle.h
+	"Shapes.h"
+
+1475581814 source:d:\posd\shapes\src\circle.cpp
+	"Circle.h"
+
+1475583410 source:d:\posd\shapes\src\shapes.cpp
+	"Shapes.h"
+
+1475583410 d:\posd\shapes\include\triangle.h
+	"Shapes.h"
+
+1475583410 source:d:\posd\shapes\src\triangle.cpp
+	"Triangle.h"
+
+1475582846 d:\posd\shapes\include\rectangle.h
+	"Shapes.h"
+
+1475582846 source:d:\posd\shapes\src\rectangle.cpp
+	"Rectangle.h"
+

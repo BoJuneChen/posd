@@ -3,6 +3,9 @@
 
 #include "..\cppunitlite\TestHarness.h"
 #include "Shapes.h"
+#include "Circle.h"
+#include "Triangle.h"
+#include "Rectangle.h"
 #include <vector>
 
 const double epsilon = 0.000001;
@@ -26,18 +29,9 @@ TEST (sencond, CirclePerimeter) { //new
     Circle circ(0,0,10);
     DOUBLES_EQUAL(62.8,circ.perimeter(),epsilon);
 }
-
-TEST (third, sumOfArea) {
-    Rectangle r1(0,0,4,2);
-    Rectangle r2(0,0,3,3);
-    std::vector<Rectangle> rects;
-    rects.push_back(r1);
-    rects.push_back(r2);
-    DOUBLES_EQUAL(17, sumOfArea(rects),epsilon);
-}
-TEST (fourth, sumOfArea) {
-    std::vector<Rectangle> rects;
-    DOUBLES_EQUAL(0, sumOfArea(rects),epsilon);
+TEST (ss,Triangle){
+    Triangle tri(0,0,0,0,1,1);
+    CHECK_EQUAL(false,tri.isTriangle());
 }
 TEST (fifth, sumOfArea) {
     Rectangle r1(0,0,4,2);

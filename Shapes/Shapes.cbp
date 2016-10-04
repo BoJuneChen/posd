@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -23,6 +24,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-std=c++11" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -34,10 +36,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Shapes.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
+		<Unit filename="include/Circle.h" />
+		<Unit filename="include/Rectangle.h" />
+		<Unit filename="include/Shapes.h" />
+		<Unit filename="include/Triangle.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Circle.cpp" />
+		<Unit filename="src/Rectangle.cpp" />
+		<Unit filename="src/Shapes.cpp" />
+		<Unit filename="src/Triangle.cpp" />
 		<Unit filename="utShapes.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
