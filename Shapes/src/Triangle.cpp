@@ -17,14 +17,18 @@ double Triangle::perimeter() const {
 }
 
 bool Triangle::isTriangle() const {
-    if(lineAB + lineBC <= lineCA){
+    if(lineAB + lineBC < lineCA || checkEqual(lineAB + lineBC , lineCA)){
         return false;
     }
-    if(lineBC + lineCA <= lineAB){
+    if(lineBC + lineCA < lineAB || checkEqual(lineBC + lineCA , lineAB)){
         return false;
     }
-    if(lineCA + lineAB <= lineBC){
+    if(lineCA + lineAB < lineBC || checkEqual(lineCA + lineAB , lineBC)){
         return false;
     }
     return true;
+}
+
+bool Triangle::checkEqual(double lineA ,double lineB) const{
+    return fabs(lineA - lineB) < EPSILON;
 }

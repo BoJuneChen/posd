@@ -120,3 +120,61 @@
 1475582846 source:d:\posd\shapes\src\rectangle.cpp
 	"Rectangle.h"
 
+1475635916 source:c:\users\fox\documents\posd\shapes\main.cpp
+	"..\cppunitlite\TestHarness.h"
+	"utShapes.h"
+
+1475635916 c:\users\fox\documents\posd\cppunitlite\testharness.h
+	"Test.h"
+	"TestResult.h"
+	"Failure.h"
+	"TestRegistry.h"
+
+1475635916 c:\users\fox\documents\posd\cppunitlite\test.h
+	<cmath>
+	"SimpleString.h"
+
+1475635916 c:\users\fox\documents\posd\cppunitlite\simplestring.h
+
+1475635916 c:\users\fox\documents\posd\cppunitlite\testresult.h
+
+1475635916 c:\users\fox\documents\posd\cppunitlite\failure.h
+	"SimpleString.h"
+
+1475635916 c:\users\fox\documents\posd\cppunitlite\testregistry.h
+
+1475649121 c:\users\fox\documents\posd\shapes\utshapes.h
+	"..\cppunitlite\TestHarness.h"
+	"Shapes.h"
+	"Circle.h"
+	"Triangle.h"
+	"Rectangle.h"
+	<vector>
+	<stdio.h>
+
+1475636462 c:\users\fox\documents\posd\shapes\include\shapes.h
+	<vector>
+	<cmath>
+
+1475636462 c:\users\fox\documents\posd\shapes\include\circle.h
+	"Shapes.h"
+
+1475641465 c:\users\fox\documents\posd\shapes\include\triangle.h
+	"Shapes.h"
+
+1475635803 c:\users\fox\documents\posd\shapes\include\rectangle.h
+	"Shapes.h"
+
+1475635803 source:c:\users\fox\documents\posd\shapes\src\circle.cpp
+	"Circle.h"
+
+1475635803 source:c:\users\fox\documents\posd\shapes\src\rectangle.cpp
+	"Rectangle.h"
+
+1475649067 source:c:\users\fox\documents\posd\shapes\src\shapes.cpp
+	"Shapes.h"
+	<stdio.h>
+
+1475648932 source:c:\users\fox\documents\posd\shapes\src\triangle.cpp
+	"Triangle.h"
+

@@ -6,6 +6,7 @@
 double const PI = 3.14; //new
 
 class Circle : public Shape {
+
 public:
     Circle(double centerX,double centerY,double radius);
     double area() const ; //modify

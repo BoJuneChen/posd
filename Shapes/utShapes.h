@@ -76,31 +76,32 @@ TEST (fourth, sortByDecreasingPerimeter){
     Rectangle rect(0,0,4,3); //14
     Circle circ(0,0,10); //62.8
     Triangle tri(0,0,3,0,3,4); //12
-    /*
+
     Rectangle rect1(0,0,1,1); //4
     Rectangle rect2(0,0,3,2); //10
     Rectangle rect3(0,0,11,3); //28
-    */
+
     std::vector<Shape *> shapes;
     shapes.push_back(&rect);
     shapes.push_back(&circ);
     shapes.push_back(&tri);
-    /*
+
     shapes.push_back(&rect1);
     shapes.push_back(&rect2);
     shapes.push_back(&rect3);
-    */
+
     shapes = sortByDecreasingPerimeter(shapes);
-    DOUBLES_EQUAL(tri.area(),shapes[0]->area(),epsilon);
-    DOUBLES_EQUAL(rect.area(),shapes[1]->area(),epsilon);
-    DOUBLES_EQUAL(circ.area(),shapes[2]->area(),epsilon);
     /*
-    DOUBLES_EQUAL(rect1.area(),shapes[0]->area(),epsilon);
-    DOUBLES_EQUAL(rect2.area(),shapes[1]->area(),epsilon);
-    DOUBLES_EQUAL(tri.area(),shapes[2]->area(),epsilon);
-    DOUBLES_EQUAL(rect.area(),shapes[3]->area(),epsilon);
-    DOUBLES_EQUAL(rect3.area(),shapes[4]->area(),epsilon);
-    DOUBLES_EQUAL(circ.area(),shapes[5]->area(),epsilon);
+    DOUBLES_EQUAL(tri.perimeter(),shapes[0]->perimeter(),epsilon);
+    DOUBLES_EQUAL(rect.perimeter(),shapes[1]->perimeter(),epsilon);
+    DOUBLES_EQUAL(circ.perimeter(),shapes[2]->perimeter(),epsilon);
     */
+    DOUBLES_EQUAL(rect1.perimeter(),shapes[0]->perimeter(),epsilon);
+    DOUBLES_EQUAL(rect2.perimeter(),shapes[1]->perimeter(),epsilon);
+    DOUBLES_EQUAL(tri.perimeter(),shapes[2]->perimeter(),epsilon);
+    DOUBLES_EQUAL(rect.perimeter(),shapes[3]->perimeter(),epsilon);
+    DOUBLES_EQUAL(rect3.perimeter(),shapes[4]->perimeter(),epsilon);
+    DOUBLES_EQUAL(circ.perimeter(),shapes[5]->perimeter(),epsilon);
+
 }
 #endif // UTSHAPES_H_INCLUDED
