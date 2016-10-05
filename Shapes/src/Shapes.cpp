@@ -1,6 +1,14 @@
 #include "Shapes.h"
 #include <stdio.h>
 
+string Shape::getName(){
+    return name;
+}
+
+void Shape::setName(string shapeName){
+    name = shapeName;
+}
+
 double sumOfArea(std::vector<Shape *> shapes) { //modify
     double total =0;
     for (Shape *s: shapes)

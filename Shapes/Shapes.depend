@@ -85,33 +85,36 @@
 
 1475580371 d:\posd\cppunitlite\testregistry.h
 
-1475596072 d:\posd\shapes\utshapes.h
+1475688702 d:\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
 	"Triangle.h"
 	"Rectangle.h"
+	"ComboShape.h"
 	<vector>
 	<stdio.h>
+	<string>
 
-1475595702 d:\posd\shapes\include\shapes.h
+1475679538 d:\posd\shapes\include\shapes.h
 	<vector>
 	<cmath>
+	<string>
 
-1475581814 d:\posd\shapes\include\circle.h
+1475678571 d:\posd\shapes\include\circle.h
 	"Shapes.h"
 
 1475581814 source:d:\posd\shapes\src\circle.cpp
 	"Circle.h"
 
-1475595702 source:d:\posd\shapes\src\shapes.cpp
+1475679538 source:d:\posd\shapes\src\shapes.cpp
 	"Shapes.h"
 	<stdio.h>
 
-1475583410 d:\posd\shapes\include\triangle.h
+1475678571 d:\posd\shapes\include\triangle.h
 	"Shapes.h"
 
-1475583410 source:d:\posd\shapes\src\triangle.cpp
+1475678571 source:d:\posd\shapes\src\triangle.cpp
 	"Triangle.h"
 
 1475582846 d:\posd\shapes\include\rectangle.h
@@ -177,4 +180,11 @@
 
 1475648932 source:c:\users\fox\documents\posd\shapes\src\triangle.cpp
 	"Triangle.h"
+
+1475687343 source:d:\posd\shapes\src\comboshape.cpp
+	"ComboShape.h"
+
+1475687313 d:\posd\shapes\include\comboshape.h
+	"Shapes.h"
+	<vector>
 
