@@ -33,19 +33,18 @@ Shape* maxArea(std::vector<Shape *> shapes){
     return nowMaxArea;
 }
 
-std::vector<Shape *> sortByDecreasingPerimeter(std::vector<Shape *> shapes){
+void sortByDecreasingPerimeter(std::vector<Shape *> &shapes){
     int i=0,j=0;
     int length=shapes.size();
     Shape* temp;
     for(i=0;i<length;i++) {
-        for(j=i;j<length;j++) {
-            if (shapes[i]->perimeter()>shapes[j]->perimeter()){
+        for(j=i+1;j<length;j++) {
+            if (shapes[i]->perimeter() > shapes[j]->perimeter()){
                 temp=shapes[i];
                 shapes[i]=shapes[j];
                 shapes[j]=temp;
             }
         }
     }
-    return shapes;
 }
 

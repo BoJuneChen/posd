@@ -20,5 +20,5 @@ private:
 double sumOfArea(std::vector<Shape *> shapes);
 double sumOfPerimeter(std::vector<Shape *> shapes);
 Shape* maxArea(std::vector<Shape *> shapes);
-std::vector<Shape *> sortByDecreasingPerimeter(std::vector<Shape *> shapes);
+void sortByDecreasingPerimeter(std::vector<Shape *> &shapes);
 #endif // SHAPES_H_INCLUDED

@@ -17,8 +17,5 @@ void ComboShape::addShape(Shape* inputShape){
 void ComboShape::addShape(std::vector<Shape*>* inputShapes){
     shapes.insert(shapes.end(),inputShapes->begin(),inputShapes->end());
 }
-vector<Shape*> ComboShape::getShapes(){
-    return shapes;
-}
 ComboShape::~ComboShape(){
 }
