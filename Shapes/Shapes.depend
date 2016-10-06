@@ -146,18 +146,21 @@
 
 1475635916 c:\users\fox\documents\posd\cppunitlite\testregistry.h
 
-1475649121 c:\users\fox\documents\posd\shapes\utshapes.h
+1475731707 c:\users\fox\documents\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
 	"Triangle.h"
 	"Rectangle.h"
+	"ComboShape.h"
 	<vector>
 	<stdio.h>
+	<string>
 
-1475636462 c:\users\fox\documents\posd\shapes\include\shapes.h
+1475730915 c:\users\fox\documents\posd\shapes\include\shapes.h
 	<vector>
 	<cmath>
+	<string>
 
 1475636462 c:\users\fox\documents\posd\shapes\include\circle.h
 	"Shapes.h"
@@ -174,7 +177,7 @@
 1475635803 source:c:\users\fox\documents\posd\shapes\src\rectangle.cpp
 	"Rectangle.h"
 
-1475649067 source:c:\users\fox\documents\posd\shapes\src\shapes.cpp
+1475728604 source:c:\users\fox\documents\posd\shapes\src\shapes.cpp
 	"Shapes.h"
 	<stdio.h>
 
@@ -187,4 +190,11 @@
 1475687313 d:\posd\shapes\include\comboshape.h
 	"Shapes.h"
 	<vector>
+
+1475731707 c:\users\fox\documents\posd\shapes\include\comboshape.h
+	"Shapes.h"
+	<vector>
+
+1475731707 source:c:\users\fox\documents\posd\shapes\src\comboshape.cpp
+	"ComboShape.h"
 

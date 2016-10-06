@@ -1,7 +1,10 @@
 #include "ComboShape.h"
 
 ComboShape::ComboShape(std::vector<Shape*>& inputShapes):shapes(inputShapes){};
-
+ComboShape::ComboShape(Shape* inputShape1,Shape* inputShape2){
+    shapes.push_back(inputShape1);
+    shapes.push_back(inputShape2);
+}
 double ComboShape::area()const {
     return sumOfArea(shapes);
 }
@@ -13,10 +16,6 @@ void ComboShape::addShape(Shape* inputShape){
 }
 void ComboShape::addShape(std::vector<Shape*>* inputShapes){
     shapes.insert(shapes.end(),inputShapes->begin(),inputShapes->end());
-}
-void ComboShape::addShape(ComboShape* inputShapes){
-    vector<Shape*> temp = inputShapes->getShapes();
-    shapes.insert(shapes.end(),temp.begin(),temp.end());
 }
 vector<Shape*> ComboShape::getShapes(){
     return shapes;

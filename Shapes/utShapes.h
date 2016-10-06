@@ -118,6 +118,18 @@ TEST (fifth, TestTriangleName){
     tri.setName("tri");
     CHECK(tri.getName()=="tri");
 }
+TEST (sixth, TestComboShapeConsturctor){
+    Rectangle rect(0,0,4,2); //area = 8
+    Circle circ(0,0,10); //area = 314
+    //create a ComboShape with type: Shape* Shape*
+    ComboShape combo(&rect,&circ); //now sumArea = 328
+    DOUBLES_EQUAL(322,combo.area(),epsilon);
+    std::vector<Shape *> shapes;
+    shapes.push_back(&rect);
+    shapes.push_back(&circ);
+    ComboShape combo2(shapes); //now sumArea = 328
+    DOUBLES_EQUAL(322,combo2.area(),epsilon);
+}
 TEST (sixth, TestComboShapeAdd){
     Rectangle rect(0,0,4,2); //area = 8
     Circle circ(0,0,10); //area = 314
@@ -171,7 +183,7 @@ TEST (sixth,TestComboShapePerimeter){
     ComboShape combo(shapes);
     DOUBLES_EQUAL(86.8,combo.perimeter(),epsilon);
 }
-TEST (sixth,AreaWithCSmallAndRTall){
+TEST (sixth,TestAreaWithCSmallAndRTall){
     Circle cSmall(2,1,1); //area = 3.14
     Rectangle rTall(1,10,2,8); //area = 16
     std::vector<Shape *> shapes;
@@ -180,7 +192,7 @@ TEST (sixth,AreaWithCSmallAndRTall){
     ComboShape combo(shapes); //now sumArea = 19.14
     DOUBLES_EQUAL(19.14,combo.area(),epsilon);
 }
-TEST (sixth,PerimeterWithCSmallAndRTall){
+TEST (sixth,TestPerimeterWithCSmallAndRTall){
     Circle cSmall(2,1,1); //perimeter 6.28
     Rectangle rTall(1,10,2,8); //perimeter 20
     std::vector<Shape *> shapes;
