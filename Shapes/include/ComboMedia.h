@@ -12,11 +12,11 @@ public:
     ComboMedia( std::vector<Media*> m ) ;
     double area() const;
     double perimeter() const;
-    /*void accept(DescriptionVisitor * dv) {
+    void accept(Visitor *visitor) {
         for (Media *m: media)
-            m->accept(dv);
-        dv->visitComboMedia(this);
-    }*/
+            m->accept(visitor);
+        visitor->visitComboMedia(this);
+    }
     void add (Media *m);
 
 };

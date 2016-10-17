@@ -10,9 +10,9 @@ private:
 
 public :
     ShapeMedia( Shape* s );
-    /*virtual void accept(DescriptionVisitor * dv) {
+    virtual void accept(Visitor * dv) {
         dv->visitShapeMedia(this);
-    }*/
+    }
     double area() const;
     double perimeter() const;
     Shape * getShape() const;

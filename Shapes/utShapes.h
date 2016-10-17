@@ -13,6 +13,8 @@
 #include "ComboMedia.h"
 #include "Media.h"
 #include "ShapeMedia.h"
+#include "AreaVisitor.h"
+#include "PerimeterVisitor.h"
 
 using namespace std;
 
@@ -222,5 +224,37 @@ TEST (seventh, TestRegularHexagon){ //HW3 problem 1
 
     DOUBLES_EQUAL(10.392,combo.area(),epsilon);
     DOUBLES_EQUAL(25.855824,combo.perimeter(),epsilon);
+}
+TEST (senenth, AreaVisitor){ //HW3 problem 2
+    AreaVisitor areaVisitor;
+    Rectangle rect(0,0,4,2);
+    Circle circ(0,0,10);
+    Triangle tri(0,0,3,0,3,4);  //area = 6
+    ShapeMedia rectMedia(&rect);
+    ShapeMedia circMedia(&circ);
+    ShapeMedia triMedia(&tri);
+     std::vector<Media *> mediaVector;
+    mediaVector.push_back(&rectMedia);
+    ComboMedia combo(mediaVector);
+    combo.add(&circMedia);
+    combo.add(&triMedia);
+    combo.accept(&areaVisitor);
+    DOUBLES_EQUAL(328,areaVisitor.getTotalArea(),epsilon);
+}
+TEST (senenth, PerimeterVisitor){ //HW3 problem 3
+    PerimeterVisitor perimeterVisitor;
+    Rectangle rect(0,0,4,2);    //perimeter = 12
+    Circle circ(0,0,10);        //perimeter = 62.8
+    Triangle tri(0,0,3,0,3,4);  //perimeter = 12
+    ShapeMedia rectMedia(&rect);
+    ShapeMedia circMedia(&circ);
+    ShapeMedia triMedia(&tri);
+     std::vector<Media *> mediaVector;
+    mediaVector.push_back(&rectMedia);
+    ComboMedia combo(mediaVector);
+    combo.add(&circMedia);
+    combo.add(&triMedia);
+    combo.accept(&perimeterVisitor);
+    DOUBLES_EQUAL(86.8,perimeterVisitor.getTotalPerimeter(),epsilon);
 }
 #endif // UTSHAPES_H_INCLUDED
