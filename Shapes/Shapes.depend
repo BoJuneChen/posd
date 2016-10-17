@@ -127,26 +127,26 @@
 	"..\cppunitlite\TestHarness.h"
 	"utShapes.h"
 
-1475635916 c:\users\fox\documents\posd\cppunitlite\testharness.h
+1447910799 c:\users\fox\documents\posd\cppunitlite\testharness.h
 	"Test.h"
 	"TestResult.h"
 	"Failure.h"
 	"TestRegistry.h"
 
-1475635916 c:\users\fox\documents\posd\cppunitlite\test.h
+1447910799 c:\users\fox\documents\posd\cppunitlite\test.h
 	<cmath>
 	"SimpleString.h"
 
-1475635916 c:\users\fox\documents\posd\cppunitlite\simplestring.h
+1447910799 c:\users\fox\documents\posd\cppunitlite\simplestring.h
 
-1475635916 c:\users\fox\documents\posd\cppunitlite\testresult.h
+1447910799 c:\users\fox\documents\posd\cppunitlite\testresult.h
 
-1475635916 c:\users\fox\documents\posd\cppunitlite\failure.h
+1447910799 c:\users\fox\documents\posd\cppunitlite\failure.h
 	"SimpleString.h"
 
-1475635916 c:\users\fox\documents\posd\cppunitlite\testregistry.h
+1447910799 c:\users\fox\documents\posd\cppunitlite\testregistry.h
 
-1475731707 c:\users\fox\documents\posd\shapes\utshapes.h
+1476695112 c:\users\fox\documents\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
@@ -156,8 +156,11 @@
 	<vector>
 	<stdio.h>
 	<string>
+	"ComboMedia.h"
+	"Media.h"
+	"ShapeMedia.h"
 
-1475730915 c:\users\fox\documents\posd\shapes\include\shapes.h
+1476421424 c:\users\fox\documents\posd\shapes\include\shapes.h
 	<vector>
 	<cmath>
 	<string>
@@ -177,7 +180,7 @@
 1475635803 source:c:\users\fox\documents\posd\shapes\src\rectangle.cpp
 	"Rectangle.h"
 
-1475728604 source:c:\users\fox\documents\posd\shapes\src\shapes.cpp
+1476421424 source:c:\users\fox\documents\posd\shapes\src\shapes.cpp
 	"Shapes.h"
 	<stdio.h>
 
@@ -191,10 +194,30 @@
 	"Shapes.h"
 	<vector>
 
-1475731707 c:\users\fox\documents\posd\shapes\include\comboshape.h
+1476421424 c:\users\fox\documents\posd\shapes\include\comboshape.h
 	"Shapes.h"
 	<vector>
 
-1475731707 source:c:\users\fox\documents\posd\shapes\src\comboshape.cpp
+1476421424 source:c:\users\fox\documents\posd\shapes\src\comboshape.cpp
 	"ComboShape.h"
+
+1476688273 source:c:\users\fox\documents\posd\shapes\src\media.cpp
+	"Media.h"
+
+1476691723 c:\users\fox\documents\posd\shapes\include\media.h
+	<string>
+	<vector>
+
+1476691695 source:c:\users\fox\documents\posd\shapes\src\shapemedia.cpp
+	"ShapeMedia.h"
+
+1476691695 c:\users\fox\documents\posd\shapes\include\shapemedia.h
+	"Media.h"
+	"Shapes.h"
+
+1476691694 source:c:\users\fox\documents\posd\shapes\src\combomedia.cpp
+	"ComboMedia.h"
+
+1476695034 c:\users\fox\documents\posd\shapes\include\combomedia.h
+	"Media.h"
 

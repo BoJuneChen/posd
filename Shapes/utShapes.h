@@ -10,6 +10,9 @@
 #include <vector>
 #include <stdio.h>
 #include <string>
+#include "ComboMedia.h"
+#include "Media.h"
+#include "ShapeMedia.h"
 
 using namespace std;
 
@@ -196,5 +199,28 @@ TEST (sixth, TestPerimeterWithCSmallAndRTall){
     ComboShape comboExclamation(&cSmall,&rTall);    //now sumPerimeter = 26.28
     DOUBLES_EQUAL(26.28,comboExclamation.perimeter(),epsilon);
 }
+TEST (seventh, TestRegularHexagon){ //HW3 problem 1
+    Triangle leftTriangle   (0, 0, -1, 1.732, 0, 3.464); //(pointAX,pointAY,pointBX,pointBY,pointCX,pointCY)
+    Rectangle middleRectangle(0, 3.464, 2, 3.464) ; //(lfX,lfY,L,W)
+    Triangle rightTriangle  (2, 0, 3, 1.732, 2, 3.464);
+    ShapeMedia leftTriangleMedia(&leftTriangle);
+    ShapeMedia middleRectangleMedia(&middleRectangle);
+    ShapeMedia rightTriangleMedia(&rightTriangle);
+    DOUBLES_EQUAL(1.732,leftTriangleMedia.area(),epsilon);
+    DOUBLES_EQUAL(1.732,rightTriangleMedia.area(),epsilon);
+    DOUBLES_EQUAL(6.928,middleRectangleMedia.area(),epsilon);
 
+    DOUBLES_EQUAL(7.463912,leftTriangleMedia.perimeter(),epsilon);
+    DOUBLES_EQUAL(7.463912,rightTriangleMedia.perimeter(),epsilon);
+    DOUBLES_EQUAL(10.928,middleRectangleMedia.perimeter(),epsilon);
+
+    std::vector<Media *> mediaVector;
+    mediaVector.push_back(&middleRectangleMedia);
+    ComboMedia combo(mediaVector);
+    combo.add(&leftTriangleMedia);
+    combo.add(&rightTriangleMedia);
+
+    DOUBLES_EQUAL(10.392,combo.area(),epsilon);
+    DOUBLES_EQUAL(25.855824,combo.perimeter(),epsilon);
+}
 #endif // UTSHAPES_H_INCLUDED
