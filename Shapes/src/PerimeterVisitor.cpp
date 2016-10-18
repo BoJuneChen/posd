@@ -1,6 +1,5 @@
 #include "PerimeterVisitor.h"
 
-
 PerimeterVisitor::PerimeterVisitor():
     totalPerimeter(0){}
 

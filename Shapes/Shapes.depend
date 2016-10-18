@@ -85,7 +85,7 @@
 
 1475580371 d:\posd\cppunitlite\testregistry.h
 
-1476723692 d:\posd\shapes\utshapes.h
+1476811477 d:\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
@@ -226,38 +226,38 @@
 1476695034 c:\users\fox\documents\posd\shapes\include\combomedia.h
 	"Media.h"
 
-1476721661 d:\posd\shapes\include\combomedia.h
+1476807980 d:\posd\shapes\include\combomedia.h
 	"Media.h"
 
-1476722071 d:\posd\shapes\include\media.h
+1476807980 d:\posd\shapes\include\media.h
 	<string>
 	<vector>
 
-1476721592 d:\posd\shapes\include\shapemedia.h
+1476807980 d:\posd\shapes\include\shapemedia.h
 	"Media.h"
 	"Shapes.h"
 
-1476714588 source:d:\posd\shapes\src\combomedia.cpp
+1476807980 source:d:\posd\shapes\src\combomedia.cpp
 	"ComboMedia.h"
 
-1476714588 source:d:\posd\shapes\src\shapemedia.cpp
+1476807980 source:d:\posd\shapes\src\shapemedia.cpp
 	"ShapeMedia.h"
 
 1476715865 source:d:\posd\shapes\src\media.cpp
 	"Media.h"
 
-1476723405 d:\posd\shapes\include\areavisitor.h
+1476807980 d:\posd\shapes\include\areavisitor.h
 	"Media.h"
 	"ShapeMedia.h"
 	"ComboMedia.h"
 
-1476723405 source:d:\posd\shapes\src\areavisitor.cpp
+1476810585 source:d:\posd\shapes\src\areavisitor.cpp
 	"AreaVisitor.h"
 
-1476723405 source:d:\posd\shapes\src\perimetervisitor.cpp
+1476809953 source:d:\posd\shapes\src\perimetervisitor.cpp
 	"PerimeterVisitor.h"
 
-1476723405 d:\posd\shapes\include\perimetervisitor.h
+1476807991 d:\posd\shapes\include\perimetervisitor.h
 	"Media.h"
 	"ShapeMedia.h"
 	"ComboMedia.h"

@@ -4,7 +4,7 @@
 #include "ShapeMedia.h"
 #include "ComboMedia.h"
 
-class AreaVisitor : public Visitor{
+class AreaVisitor : public MediaVisitor{
 
 public:
     AreaVisitor();

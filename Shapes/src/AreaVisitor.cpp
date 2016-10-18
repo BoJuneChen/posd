@@ -1,7 +1,7 @@
 #include "AreaVisitor.h"
-
 AreaVisitor::AreaVisitor():
     totalArea(0){}
+
 void AreaVisitor::visitComboMedia(ComboMedia *comboMedia){
     //do nothing
 }

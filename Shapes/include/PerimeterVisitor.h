@@ -6,7 +6,7 @@
 #include "ComboMedia.h"
 
 
-class PerimeterVisitor : public Visitor{
+class PerimeterVisitor : public MediaVisitor{
 
 public:
     PerimeterVisitor();

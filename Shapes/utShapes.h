@@ -32,11 +32,11 @@ TEST (first, TestTriangleArea){
     Triangle tri(0,0,3,0,3,4); //use 3:4:5 triangle for simple test,because no point number
     DOUBLES_EQUAL(6,tri.area(),epsilon);
 }
-TEST (sencond, TestRectanglePerimeter) {
+TEST (sencond, TestRectanglePerimeter){
     Rectangle rect(0,0,4,2);
     DOUBLES_EQUAL(12,rect.perimeter(),epsilon);
 }
-TEST (sencond, TestCirclePerimeter) {
+TEST (sencond, TestCirclePerimeter){
     Circle circ(0,0,10);
     DOUBLES_EQUAL(62.8,circ.perimeter(),epsilon);
 }
@@ -56,7 +56,7 @@ TEST (sencond, TestIsNotTriangle_2){
     Triangle tri(0,0,1,1,3,3);
     CHECK_EQUAL(false,tri.isTriangle());
 }
-TEST (third, TestSumOfArea) {
+TEST (third, TestSumOfArea){
     Rectangle rect(0,0,4,2);
     Circle circ(0,0,10);
     std::vector<Shape *> shapes;
@@ -108,7 +108,7 @@ TEST (fourth, TestSortByDecreasingPerimeter){
     DOUBLES_EQUAL(rect3.perimeter() ,shapes[4]->perimeter(),epsilon);
     DOUBLES_EQUAL(circ.perimeter()  ,shapes[5]->perimeter(),epsilon);
 }
-TEST (fifth, TestRectangleName) {
+TEST (fifth, TestRectangleName){
     Rectangle rect(0,0,4,2);
     rect.setName("rect");
     CHECK(rect.getName() == "rect");
@@ -204,7 +204,7 @@ TEST (sixth, TestPerimeterWithCSmallAndRTall){
 TEST (seventh, TestRegularHexagon){ //HW3 problem 1
     Triangle leftTriangle   (0, 0, -1, 1.732, 0, 3.464); //(pointAX,pointAY,pointBX,pointBY,pointCX,pointCY)
     Rectangle middleRectangle(0, 3.464, 2, 3.464) ; //(lfX,lfY,L,W)
-    Triangle rightTriangle  (2, 0, 3, 1.732, 2, 3.464);
+    Triangle rightTriangle  (2, 0,  3, 1.732, 2, 3.464);
     ShapeMedia leftTriangleMedia(&leftTriangle);
     ShapeMedia middleRectangleMedia(&middleRectangle);
     ShapeMedia rightTriangleMedia(&rightTriangle);
@@ -225,7 +225,7 @@ TEST (seventh, TestRegularHexagon){ //HW3 problem 1
     DOUBLES_EQUAL(10.392,combo.area(),epsilon);
     DOUBLES_EQUAL(25.855824,combo.perimeter(),epsilon);
 }
-TEST (senenth, AreaVisitor){ //HW3 problem 2
+TEST (senenth, TestAreaVisitor){ //HW3 problem 2
     AreaVisitor areaVisitor;
     Rectangle rect(0,0,4,2);
     Circle circ(0,0,10);
@@ -233,7 +233,7 @@ TEST (senenth, AreaVisitor){ //HW3 problem 2
     ShapeMedia rectMedia(&rect);
     ShapeMedia circMedia(&circ);
     ShapeMedia triMedia(&tri);
-     std::vector<Media *> mediaVector;
+    std::vector<Media *> mediaVector;
     mediaVector.push_back(&rectMedia);
     ComboMedia combo(mediaVector);
     combo.add(&circMedia);
@@ -241,7 +241,7 @@ TEST (senenth, AreaVisitor){ //HW3 problem 2
     combo.accept(&areaVisitor);
     DOUBLES_EQUAL(328,areaVisitor.getTotalArea(),epsilon);
 }
-TEST (senenth, PerimeterVisitor){ //HW3 problem 3
+TEST (senenth, TestPerimeterVisitor){ //HW3 problem 3
     PerimeterVisitor perimeterVisitor;
     Rectangle rect(0,0,4,2);    //perimeter = 12
     Circle circ(0,0,10);        //perimeter = 62.8
@@ -249,12 +249,35 @@ TEST (senenth, PerimeterVisitor){ //HW3 problem 3
     ShapeMedia rectMedia(&rect);
     ShapeMedia circMedia(&circ);
     ShapeMedia triMedia(&tri);
-     std::vector<Media *> mediaVector;
+    std::vector<Media *> mediaVector;
     mediaVector.push_back(&rectMedia);
     ComboMedia combo(mediaVector);
     combo.add(&circMedia);
     combo.add(&triMedia);
     combo.accept(&perimeterVisitor);
     DOUBLES_EQUAL(86.8,perimeterVisitor.getTotalPerimeter(),epsilon);
+}
+TEST (seventh, TestVisitorsWithHexagon){ //HW3 problem 1 2 3
+    AreaVisitor areaVisitor;
+    PerimeterVisitor perimeterVisitor;
+    Triangle leftTriangle   (0, 0, -1, 1.732, 0, 3.464); //use problem 1's hexagon
+    Rectangle middleRectangle(0, 3.464, 2, 3.464) ;
+    Triangle rightTriangle  (2, 0,  3, 1.732, 2, 3.464);
+    ShapeMedia leftTriangleMedia(&leftTriangle);
+    ShapeMedia middleRectangleMedia(&middleRectangle);
+    ShapeMedia rightTriangleMedia(&rightTriangle);
+
+    std::vector<Media *> mediaVector;
+    mediaVector.push_back(&middleRectangleMedia);
+    ComboMedia combo(mediaVector);
+    combo.add(&leftTriangleMedia); //r+t
+    std::vector<Media *> mediaVector2;
+    mediaVector2.push_back(&combo);
+    ComboMedia combo2(mediaVector2);
+    combo2.add(&rightTriangleMedia); //combo+t
+    combo2.accept(&areaVisitor);
+    combo2.accept(&perimeterVisitor);
+    DOUBLES_EQUAL(10.392,areaVisitor.getTotalArea(),epsilon);
+    DOUBLES_EQUAL(25.855824,perimeterVisitor.getTotalPerimeter(),epsilon);
 }
 #endif // UTSHAPES_H_INCLUDED

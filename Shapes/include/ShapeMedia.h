@@ -10,11 +10,9 @@ private:
 
 public :
     ShapeMedia( Shape* s );
-    virtual void accept(Visitor * dv) {
-        dv->visitShapeMedia(this);
-    }
-    double area() const;
-    double perimeter() const;
+    void accept(MediaVisitor * mediaVisitor); //For hw#3 problem 2,3
+    double area() const; //For hw#3 problem 1
+    double perimeter() const; //For hw#3 problem 1
     Shape * getShape() const;
 };
 #endif // SHAPEMEDIA_H

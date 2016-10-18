@@ -10,15 +10,10 @@ private:
 public:
     ComboMedia() ;
     ComboMedia( std::vector<Media*> m ) ;
-    double area() const;
-    double perimeter() const;
-    void accept(Visitor *visitor) {
-        for (Media *m: media)
-            m->accept(visitor);
-        visitor->visitComboMedia(this);
-    }
-    void add (Media *m);
-
+    double area() const; //For hw#3 problem 1
+    double perimeter() const; //For hw#3 problem 1
+    void accept(MediaVisitor *mediaVisitor); //For hw#3 problem 2,3
+    void add (Media *m); //For hw#3 problem 2,3
 };
 
 #endif // COMBOMEDIA_H

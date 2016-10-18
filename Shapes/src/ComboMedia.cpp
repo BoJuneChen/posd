@@ -10,6 +10,12 @@ double ComboMedia::area( ) const{
     return total;
 }
 
+void ComboMedia::accept(MediaVisitor *mediaVisitor) {
+    for (Media *m: media)
+        m->accept(mediaVisitor);
+    mediaVisitor->visitComboMedia(this);
+}
+
 double ComboMedia::perimeter() const{
     double total =0;
     for (Media *m: media)

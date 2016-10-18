@@ -13,3 +13,7 @@ double ShapeMedia::perimeter() const{
 Shape * ShapeMedia::getShape()const{
     return shape;
 }
+
+void ShapeMedia::accept(MediaVisitor * mediaVisitor) {
+    mediaVisitor->visitShapeMedia(this);
+}
