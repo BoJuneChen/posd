@@ -7,6 +7,9 @@ void DescriptionVisitor::visitShapeMedia(ShapeMedia *sm){
 void DescriptionVisitor::visitComboMedia(ComboMedia *cm){
     desc += std::string("combo(");
 }
+void DescriptionVisitor::visitTextMedia(TextMedia *textMedia){
+    desc +=textMedia->description();
+}
 void DescriptionVisitor::finishVisit(){
     desc += std::string(")");
 }

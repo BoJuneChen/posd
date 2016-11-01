@@ -13,7 +13,7 @@ public:
     virtual double perimeter () const = 0; //new
     string getName();
     void setName(string shapeName);
-        virtual std::string description() const {return std::string("");}
+    virtual std::string description() const {return std::string("");}
 private:
     string name;
 };

@@ -18,6 +18,10 @@
 #include "PerimeterVisitor.h"
 #include "DescriptionVisitor.h"
 #include "ShapeMediaBuilder.h"
+#include "ComboMediaBuilder.h"
+#include <stack>
+#include "Text.h"
+#include "TextMedia.h"
 using namespace std;
 
 const double epsilon = 0.000001;
@@ -184,7 +188,7 @@ TEST (sixth, TestComboShapePerimeter){
     Rectangle rect(0,0,4,2);    //perimeter = 12
     Circle circ(0,0,10);        //perimeter = 62.8
     Triangle tri(0,0,3,0,3,4);  //perimeter = 12
-     std::vector<Shape *> shapes;
+    std::vector<Shape *> shapes;
     shapes.push_back(&rect);
     shapes.push_back(&circ);
     shapes.push_back(&tri);
@@ -307,26 +311,111 @@ TEST (eighth, TestComboMediaDescriptionVisitor){
     //std::cout<<  dv.getDescription() << std::endl;
     CHECK(std::string("combo(r(0 0 4 2) c(0 0 10) )") == dv.getDescription());
 }
-TEST (eighth, TestBuildTheHouse){
-    Circle c(12,5,2);
+TEST (eighth, TestBuildTheHouse){ //HW4 problem 2
+    stack<ComboMediaBuilder*> mbs;
+    mbs.push(new ComboMediaBuilder());
+    mbs.top()->buildComboMedia();
+    mbs.push(new ComboMediaBuilder());
+    mbs.top()->buildComboMedia();
+    mbs.push(new ComboMediaBuilder());
+    mbs.top()->buildComboMedia();
     Rectangle r1(10,0,15,5);
+    mbs.top()->buildShapeMedia(&r1);
+    Circle c(12,5,2);
+    mbs.top()->buildShapeMedia(&c);
+
+    Media *combo1 = mbs.top()->getMedia();
+    mbs.pop();
+    mbs.top()->addComboMedia(combo1);
     Rectangle r2(0,0,25,20);
+    mbs.top()->buildShapeMedia(&r2);
+
+    Media *combo2 = mbs.top()->getMedia();
+    mbs.pop();
+    mbs.top()->addComboMedia(combo2);
     Triangle t(0,20,16,32,25,20);
-    ShapeMedia sR1(&r1);
-    ShapeMedia sC(&c);
-    std::vector<Media *> mediaVector;
-    mediaVector.push_back(&sR1);
-    mediaVector.push_back(&sC);
-    ComboMedia combo1(mediaVector);
-    ComboMedia combo2(combo1);
-    ShapeMedia sR2(&r2);
-    combo2.add(&sR2);
-    ComboMedia combo3(combo2);
-    ShapeMedia sT(&t);
-    combo3.add(&sT);
+    mbs.top()->buildShapeMedia(&t);
+
     DescriptionVisitor dv;
-    combo3.accept(&dv);
-    std::cout<<  dv.getDescription() << std::endl;
-    FAIL("0");
+    mbs.top()->getMedia()->accept(&dv);
+    //std::cout << dv.getDescription() << std::endl;
+
+    string desc("combo(combo(combo(r(10 0 15 5) c(12 5 2) )r(0 0 25 20) )t(0 20 16 32 25 20) )");
+    CHECK(desc == dv.getDescription());
+    //FAIL("0");
+}
+TEST (eighth, TestTextMedia){ //HW4 problem 3
+    Rectangle boundingBox(0,0,4,2);
+    string messageText = "bounding Box";
+    Text text(boundingBox,messageText);
+    CHECK(messageText == text.getText());
+    DOUBLES_EQUAL(8,text.getRectangleArea(),epsilon);
+    TextMedia tm(&text);
+    AreaVisitor av;
+    tm.accept(&av);
+    DOUBLES_EQUAL(8,av.getTotalArea(),epsilon);
+}
+TEST (eighth, TestRemoveMedia1){
+    Rectangle rect(0,0,4,2);
+    Circle circ(0,0,10);
+    Triangle tri(0,0,3,0,3,4);
+    ShapeMedia rectMedia(&rect);
+    ShapeMedia circMedia(&circ);
+    ShapeMedia triMedia(&tri);
+    std::vector<Media *> mediaVector;
+    mediaVector.push_back(&rectMedia);
+    ComboMedia combo(mediaVector);
+    combo.add(&circMedia);
+    combo.add(&triMedia);
+    DescriptionVisitor dv;
+    combo.accept(&dv);
+    //std::cout << dv.getDescription() << std::endl;
+    string desc = "combo(r(0 0 4 2) c(0 0 10) t(0 0 3 0 3 4) )";
+    CHECK( desc == dv.getDescription());
+    combo.removeMedia(&triMedia);
+    DescriptionVisitor dv2;
+    combo.accept(&dv2);
+    //std::cout << dv2.getDescription() << std::endl;
+    string desc2 = "combo(r(0 0 4 2) c(0 0 10) )";
+    CHECK( desc2 == dv2.getDescription());
+}
+TEST (eighth, TestRemoveMedia2){
+     stack<ComboMediaBuilder*> mbs;
+    mbs.push(new ComboMediaBuilder());
+    mbs.top()->buildComboMedia();
+    mbs.push(new ComboMediaBuilder());
+    mbs.top()->buildComboMedia();
+    mbs.push(new ComboMediaBuilder());
+    mbs.top()->buildComboMedia();
+    Rectangle r1(10,0,15,5);
+    mbs.top()->buildShapeMedia(&r1);
+    Circle c(12,5,2);
+    mbs.top()->buildShapeMedia(&c);
+
+    Media *combo1 = mbs.top()->getMedia();
+    mbs.pop();
+    mbs.top()->addComboMedia(combo1);
+    Rectangle r2(0,0,25,20);
+    mbs.top()->buildShapeMedia(&r2);
+
+    Media *combo2 = mbs.top()->getMedia();
+    mbs.pop();
+    mbs.top()->addComboMedia(combo2);
+    Triangle t(0,20,16,32,25,20);
+    mbs.top()->buildShapeMedia(&t);
+
+    DescriptionVisitor dv;
+    mbs.top()->getMedia()->accept(&dv);
+    //std::cout << dv.getDescription() << std::endl;
+
+    string desc("combo(combo(combo(r(10 0 15 5) c(12 5 2) )r(0 0 25 20) )t(0 20 16 32 25 20) )");
+    CHECK(desc == dv.getDescription());
+    ShapeMedia sMR2(&r2);
+    mbs.top()->getMedia()->removeMedia(&sMR2);
+    DescriptionVisitor dv2;
+    mbs.top()->getMedia()->accept(&dv2);
+    //std::cout << dv2.getDescription() << std::endl;
+    string desc2("combo(combo(combo(r(10 0 15 5) c(12 5 2) ))t(0 20 16 32 25 20) )");
+    CHECK(desc2 == dv2.getDescription());
 }
 #endif // UTSHAPES_H_INCLUDED

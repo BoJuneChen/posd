@@ -2,6 +2,7 @@
 #define SHAPEMEDIA_H
 #include "Media.h"
 #include "Shapes.h"
+#include <string>
 
 class ShapeMedia : public Media {
 
@@ -14,5 +15,8 @@ public :
     double area() const; //For hw#3 problem 1
     double perimeter() const; //For hw#3 problem 1
     Shape * getShape() const;
+    string description();
+    string getType()const;
+    //void removeMedia(Media * m){};
 };
 #endif // SHAPEMEDIA_H

@@ -6,11 +6,13 @@
 
 class ComboMedia;
 class ShapeMedia;
+class TextMedia;
 
 class MediaVisitor {
 public :
     virtual void visitShapeMedia(ShapeMedia *shapeMedia);
     virtual void visitComboMedia(ComboMedia *comboMedia);
+    virtual void visitTextMedia(TextMedia *textMedia);
     virtual void finishVisit();
 };
 
@@ -22,6 +24,11 @@ public :
     virtual void add(Media * m) {
         throw std::string("Illegal: add on media");
     }
+    virtual string getType() const ;
+    virtual void removeMedia(Media * m){
+        throw std::string("Illegal: remove on media");
+    }
+    virtual string description();
 };
 
 class MediaBuilder{

@@ -85,7 +85,7 @@
 
 1447910799 d:\posd\cppunitlite\testregistry.h
 
-1478001953 d:\posd\shapes\utshapes.h
+1478021151 d:\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
@@ -103,8 +103,12 @@
 	"PerimeterVisitor.h"
 	"DescriptionVisitor.h"
 	"ShapeMediaBuilder.h"
+	"ComboMediaBuilder.h"
+	<stack>
+	"Text.h"
+	"TextMedia.h"
 
-1478000395 d:\posd\shapes\include\shapes.h
+1478016068 d:\posd\shapes\include\shapes.h
 	<vector>
 	<cmath>
 	<string>
@@ -235,42 +239,46 @@
 1476695034 c:\users\fox\documents\posd\shapes\include\combomedia.h
 	"Media.h"
 
-1476807980 d:\posd\shapes\include\combomedia.h
+1478017747 d:\posd\shapes\include\combomedia.h
 	"Media.h"
+	<string>
 
-1478000924 d:\posd\shapes\include\media.h
+1478017572 d:\posd\shapes\include\media.h
 	<string>
 	<vector>
 	"Shapes.h"
 
-1476807980 d:\posd\shapes\include\shapemedia.h
+1478017705 d:\posd\shapes\include\shapemedia.h
 	"Media.h"
 	"Shapes.h"
+	<string>
 
-1478001406 source:d:\posd\shapes\src\combomedia.cpp
+1478017986 source:d:\posd\shapes\src\combomedia.cpp
 	"ComboMedia.h"
 
-1476807980 source:d:\posd\shapes\src\shapemedia.cpp
+1478017469 source:d:\posd\shapes\src\shapemedia.cpp
 	"ShapeMedia.h"
 
 1476715865 source:d:\posd\shapes\src\media.cpp
 	"Media.h"
 
-1478000924 d:\posd\shapes\include\areavisitor.h
+1478012171 d:\posd\shapes\include\areavisitor.h
 	"Media.h"
 	"ShapeMedia.h"
 	"ComboMedia.h"
+	"TextMedia.h"
 
-1476810585 source:d:\posd\shapes\src\areavisitor.cpp
+1478012171 source:d:\posd\shapes\src\areavisitor.cpp
 	"AreaVisitor.h"
 
-1476809953 source:d:\posd\shapes\src\perimetervisitor.cpp
+1478012171 source:d:\posd\shapes\src\perimetervisitor.cpp
 	"PerimeterVisitor.h"
 
-1478000924 d:\posd\shapes\include\perimetervisitor.h
+1478012171 d:\posd\shapes\include\perimetervisitor.h
 	"Media.h"
 	"ShapeMedia.h"
 	"ComboMedia.h"
+	"TextMedia.h"
 
 1477999732 d:\posd\shapes\include\shapemediabuilder.h
 	"Media.h"
@@ -279,12 +287,35 @@
 1477998397 source:d:\posd\shapes\src\shapemediabuilder.cpp
 	"ShapeMediaBuilder.h"
 
-1478000653 source:d:\posd\shapes\src\descriptionvisitor.cpp
+1478017823 source:d:\posd\shapes\src\descriptionvisitor.cpp
 	"DescriptionVisitor.h"
 
-1478000653 d:\posd\shapes\include\descriptionvisitor.h
+1478012171 d:\posd\shapes\include\descriptionvisitor.h
 	<string>
 	"Media.h"
 	"ShapeMedia.h"
 	"ComboMedia.h"
+	"TextMedia.h"
+
+1478003670 d:\posd\shapes\include\combomediabuilder.h
+	"Media.h"
+	"ShapeMedia.h"
+	"ComboMedia.h"
+
+1478003736 source:d:\posd\shapes\src\combomediabuilder.cpp
+	"ComboMediaBuilder.h"
+
+1478010441 source:d:\posd\shapes\src\text.cpp
+	"Text.h"
+
+1478010441 d:\posd\shapes\include\text.h
+	<string>
+	"Rectangle.h"
+
+1478017807 d:\posd\shapes\include\textmedia.h
+	"Media.h"
+	"Text.h"
+
+1478017807 source:d:\posd\shapes\src\textmedia.cpp
+	"TextMedia.h"
 

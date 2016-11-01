@@ -8,6 +8,9 @@ void AreaVisitor::visitComboMedia(ComboMedia *comboMedia){
 void AreaVisitor::visitShapeMedia(ShapeMedia *shapeMedia){
     totalArea += shapeMedia->area();
 }
+void AreaVisitor::visitTextMedia(TextMedia *textMedia){
+    totalArea += textMedia->area();
+}
 double AreaVisitor::getTotalArea() const{
     return totalArea;
 }

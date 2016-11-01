@@ -9,6 +9,10 @@ void PerimeterVisitor::visitComboMedia(ComboMedia *comboMedia){
 void PerimeterVisitor::visitShapeMedia(ShapeMedia *shapeMedia){
     totalPerimeter+=shapeMedia->perimeter();
 }
+void PerimeterVisitor::visitTextMedia(TextMedia *textMedia){
+    totalPerimeter+=textMedia->perimeter();
+}
 double PerimeterVisitor::getTotalPerimeter () const{
     return totalPerimeter;
 }
+

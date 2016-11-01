@@ -27,3 +27,24 @@ double ComboMedia::perimeter() const{
 void ComboMedia::add (Media *m){
     media.push_back(m);
 }
+
+string ComboMedia::getType()const{
+    return std::string("ComboMedia");
+}
+string ComboMedia::description(){
+    return std::string("Combo");
+}
+void ComboMedia::removeMedia(Media* m){
+    int counter = 0;
+    for (Media *targetMedia: media){
+        if(targetMedia->getType() == std::string("ComboMedia")){
+            targetMedia->removeMedia(m);
+        }
+        else{
+            if(targetMedia->description().compare(m->description())==0){
+                media.erase(media.begin()+counter);
+            }
+        }
+        counter ++;
+    }
+}

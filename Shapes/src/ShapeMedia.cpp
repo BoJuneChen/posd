@@ -17,3 +17,10 @@ Shape * ShapeMedia::getShape()const{
 void ShapeMedia::accept(MediaVisitor * mediaVisitor) {
     mediaVisitor->visitShapeMedia(this);
 }
+string ShapeMedia::getType()const{
+    return std::string("ShapeMedia");
+}
+
+string ShapeMedia::description(){
+    return shape->description();
+}
