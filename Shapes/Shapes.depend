@@ -66,26 +66,26 @@
 	"..\cppunitlite\TestHarness.h"
 	"utShapes.h"
 
-1475580371 d:\posd\cppunitlite\testharness.h
+1447910799 d:\posd\cppunitlite\testharness.h
 	"Test.h"
 	"TestResult.h"
 	"Failure.h"
 	"TestRegistry.h"
 
-1475580371 d:\posd\cppunitlite\test.h
+1447910799 d:\posd\cppunitlite\test.h
 	<cmath>
 	"SimpleString.h"
 
-1475580371 d:\posd\cppunitlite\simplestring.h
+1447910799 d:\posd\cppunitlite\simplestring.h
 
-1475580371 d:\posd\cppunitlite\testresult.h
+1447910799 d:\posd\cppunitlite\testresult.h
 
-1475580371 d:\posd\cppunitlite\failure.h
+1447910799 d:\posd\cppunitlite\failure.h
 	"SimpleString.h"
 
-1475580371 d:\posd\cppunitlite\testregistry.h
+1447910799 d:\posd\cppunitlite\testregistry.h
 
-1476811477 d:\posd\shapes\utshapes.h
+1478001953 d:\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
@@ -95,37 +95,46 @@
 	<vector>
 	<stdio.h>
 	<string>
+	<iostream>
 	"ComboMedia.h"
 	"Media.h"
 	"ShapeMedia.h"
 	"AreaVisitor.h"
 	"PerimeterVisitor.h"
+	"DescriptionVisitor.h"
+	"ShapeMediaBuilder.h"
 
-1475756573 d:\posd\shapes\include\shapes.h
+1478000395 d:\posd\shapes\include\shapes.h
 	<vector>
 	<cmath>
 	<string>
 
-1475678571 d:\posd\shapes\include\circle.h
+1478000312 d:\posd\shapes\include\circle.h
 	"Shapes.h"
+	<string>
+	<sstream>
 
-1475581814 source:d:\posd\shapes\src\circle.cpp
+1478000268 source:d:\posd\shapes\src\circle.cpp
 	"Circle.h"
 
 1475757656 source:d:\posd\shapes\src\shapes.cpp
 	"Shapes.h"
 	<stdio.h>
 
-1475678571 d:\posd\shapes\include\triangle.h
+1478000312 d:\posd\shapes\include\triangle.h
 	"Shapes.h"
+	<string>
+	<sstream>
 
-1475678571 source:d:\posd\shapes\src\triangle.cpp
+1478000429 source:d:\posd\shapes\src\triangle.cpp
 	"Triangle.h"
 
-1475582846 d:\posd\shapes\include\rectangle.h
+1478000312 d:\posd\shapes\include\rectangle.h
 	"Shapes.h"
+	<string>
+	<sstream>
 
-1475582846 source:d:\posd\shapes\src\rectangle.cpp
+1478000429 source:d:\posd\shapes\src\rectangle.cpp
 	"Rectangle.h"
 
 1475635916 source:c:\users\fox\documents\posd\shapes\main.cpp
@@ -195,7 +204,7 @@
 1475757538 source:d:\posd\shapes\src\comboshape.cpp
 	"ComboShape.h"
 
-1475757538 d:\posd\shapes\include\comboshape.h
+1478000268 d:\posd\shapes\include\comboshape.h
 	"Shapes.h"
 	<vector>
 
@@ -229,15 +238,16 @@
 1476807980 d:\posd\shapes\include\combomedia.h
 	"Media.h"
 
-1476807980 d:\posd\shapes\include\media.h
+1478000924 d:\posd\shapes\include\media.h
 	<string>
 	<vector>
+	"Shapes.h"
 
 1476807980 d:\posd\shapes\include\shapemedia.h
 	"Media.h"
 	"Shapes.h"
 
-1476807980 source:d:\posd\shapes\src\combomedia.cpp
+1478001406 source:d:\posd\shapes\src\combomedia.cpp
 	"ComboMedia.h"
 
 1476807980 source:d:\posd\shapes\src\shapemedia.cpp
@@ -246,7 +256,7 @@
 1476715865 source:d:\posd\shapes\src\media.cpp
 	"Media.h"
 
-1476807980 d:\posd\shapes\include\areavisitor.h
+1478000924 d:\posd\shapes\include\areavisitor.h
 	"Media.h"
 	"ShapeMedia.h"
 	"ComboMedia.h"
@@ -257,7 +267,23 @@
 1476809953 source:d:\posd\shapes\src\perimetervisitor.cpp
 	"PerimeterVisitor.h"
 
-1476807991 d:\posd\shapes\include\perimetervisitor.h
+1478000924 d:\posd\shapes\include\perimetervisitor.h
+	"Media.h"
+	"ShapeMedia.h"
+	"ComboMedia.h"
+
+1477999732 d:\posd\shapes\include\shapemediabuilder.h
+	"Media.h"
+	"ShapeMedia.h"
+
+1477998397 source:d:\posd\shapes\src\shapemediabuilder.cpp
+	"ShapeMediaBuilder.h"
+
+1478000653 source:d:\posd\shapes\src\descriptionvisitor.cpp
+	"DescriptionVisitor.h"
+
+1478000653 d:\posd\shapes\include\descriptionvisitor.h
+	<string>
 	"Media.h"
 	"ShapeMedia.h"
 	"ComboMedia.h"

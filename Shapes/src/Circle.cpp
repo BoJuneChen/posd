@@ -5,7 +5,12 @@ Circle::Circle(double centerX,double centerY,double radius):
 
 double Circle::area()const {
         return PI*r*r;
-    } //modify
+} //modify
 double Circle::perimeter() const {
         return 2*PI*r;
-    } //new
+} //new
+std::string Circle::description() const {
+    std::stringstream ss;
+    ss << "c(" << cx << " " << cy << " " << r << ") ";
+    return ss.str();
+}

@@ -32,3 +32,9 @@ bool Triangle::isTriangle() const {
 bool Triangle::checkEqual(double lineA ,double lineB) const{
     return fabs(lineA - lineB) < EPSILON;
 }
+
+std::string Triangle::description() const {
+    std::stringstream ss;
+    ss << "t(" << ax << " " << ay << " " << bx << " " << by << " " << cx << " " << cy << ") ";
+    return ss.str();
+}

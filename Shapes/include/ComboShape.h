@@ -14,6 +14,7 @@ class ComboShape : public Shape
         double perimeter() const;
         void addShape(Shape* inputShape);
         void addShape(std::vector<Shape*>* inputShapes);
+
     private:
         vector<Shape*> shapes;
 };

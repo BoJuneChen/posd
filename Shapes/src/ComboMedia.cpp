@@ -11,9 +11,10 @@ double ComboMedia::area( ) const{
 }
 
 void ComboMedia::accept(MediaVisitor *mediaVisitor) {
+    mediaVisitor->visitComboMedia(this);
     for (Media *m: media)
         m->accept(mediaVisitor);
-    mediaVisitor->visitComboMedia(this);
+    mediaVisitor->finishVisit();
 }
 
 double ComboMedia::perimeter() const{

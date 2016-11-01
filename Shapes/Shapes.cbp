@@ -40,10 +40,12 @@
 		<Unit filename="include/Circle.h" />
 		<Unit filename="include/ComboMedia.h" />
 		<Unit filename="include/ComboShape.h" />
+		<Unit filename="include/DescriptionVisitor.h" />
 		<Unit filename="include/Media.h" />
 		<Unit filename="include/PerimeterVisitor.h" />
 		<Unit filename="include/Rectangle.h" />
 		<Unit filename="include/ShapeMedia.h" />
+		<Unit filename="include/ShapeMediaBuilder.h" />
 		<Unit filename="include/Shapes.h" />
 		<Unit filename="include/Triangle.h" />
 		<Unit filename="main.cpp" />
@@ -51,10 +53,12 @@
 		<Unit filename="src/Circle.cpp" />
 		<Unit filename="src/ComboMedia.cpp" />
 		<Unit filename="src/ComboShape.cpp" />
+		<Unit filename="src/DescriptionVisitor.cpp" />
 		<Unit filename="src/Media.cpp" />
 		<Unit filename="src/PerimeterVisitor.cpp" />
 		<Unit filename="src/Rectangle.cpp" />
 		<Unit filename="src/ShapeMedia.cpp" />
+		<Unit filename="src/ShapeMediaBuilder.cpp" />
 		<Unit filename="src/Shapes.cpp" />
 		<Unit filename="src/Triangle.cpp" />
 		<Unit filename="utShapes.h">

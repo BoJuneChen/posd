@@ -10,12 +10,14 @@
 #include <vector>
 #include <stdio.h>
 #include <string>
+#include <iostream>
 #include "ComboMedia.h"
 #include "Media.h"
 #include "ShapeMedia.h"
 #include "AreaVisitor.h"
 #include "PerimeterVisitor.h"
-
+#include "DescriptionVisitor.h"
+#include "ShapeMediaBuilder.h"
 using namespace std;
 
 const double epsilon = 0.000001;
@@ -279,5 +281,52 @@ TEST (seventh, TestVisitorsWithHexagon){ //HW3 problem 1 2 3
     combo2.accept(&perimeterVisitor);
     DOUBLES_EQUAL(10.392,areaVisitor.getTotalArea(),epsilon);
     DOUBLES_EQUAL(25.855824,perimeterVisitor.getTotalPerimeter(),epsilon);
+}
+TEST (eighth, TestBuildCircleShapeMedia){ //HW4 problem 1
+    ShapeMediaBuilder smb;
+    Circle c(0,0,5);
+    smb.buildShapeMedia(&c);
+    DOUBLES_EQUAL(78.5,smb.getMedia()->area(),epsilon);
+}
+TEST (eighth, TestShapeMediaDescriptionVisitor){
+    Rectangle r1(0,0,4,2);
+    ShapeMedia sR1(&r1) ;
+    DescriptionVisitor dv;
+    sR1.accept(&dv);
+    CHECK(std::string("r(0 0 4 2) ") == dv.getDescription());
+}
+TEST (eighth, TestComboMediaDescriptionVisitor){
+    Rectangle r1(0,0,4,2);
+    Circle r2(0,0,10);
+    ShapeMedia sR1( &r1 ) ;
+    ShapeMedia sR2( &r2 ) ;
+    std::vector<Media *> ss{&sR1,&sR2};
+    ComboMedia cm(ss);
+    DescriptionVisitor dv;
+    cm.accept(&dv);
+    //std::cout<<  dv.getDescription() << std::endl;
+    CHECK(std::string("combo(r(0 0 4 2) c(0 0 10) )") == dv.getDescription());
+}
+TEST (eighth, TestBuildTheHouse){
+    Circle c(12,5,2);
+    Rectangle r1(10,0,15,5);
+    Rectangle r2(0,0,25,20);
+    Triangle t(0,20,16,32,25,20);
+    ShapeMedia sR1(&r1);
+    ShapeMedia sC(&c);
+    std::vector<Media *> mediaVector;
+    mediaVector.push_back(&sR1);
+    mediaVector.push_back(&sC);
+    ComboMedia combo1(mediaVector);
+    ComboMedia combo2(combo1);
+    ShapeMedia sR2(&r2);
+    combo2.add(&sR2);
+    ComboMedia combo3(combo2);
+    ShapeMedia sT(&t);
+    combo3.add(&sT);
+    DescriptionVisitor dv;
+    combo3.accept(&dv);
+    std::cout<<  dv.getDescription() << std::endl;
+    FAIL("0");
 }
 #endif // UTSHAPES_H_INCLUDED

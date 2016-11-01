@@ -9,3 +9,8 @@ double Rectangle::area() const {
 double Rectangle::perimeter() const {
     return (l+w)*2;
 } //new
+std::string Rectangle::description() const {
+    std::stringstream ss;
+    ss << "r(" << x << " " << y << " " << l << " " << w << ") ";
+    return ss.str();
+}

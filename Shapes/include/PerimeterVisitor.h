@@ -12,6 +12,7 @@ public:
     PerimeterVisitor();
     void visitComboMedia(ComboMedia *comboMedia);
     void visitShapeMedia(ShapeMedia *shapeMedia);
+    void finishVisit(){};
     double getTotalPerimeter () const;
 
 private:
