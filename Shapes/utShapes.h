@@ -22,6 +22,10 @@
 #include <stack>
 #include "Text.h"
 #include "TextMedia.h"
+#include "Document.h"
+#include "MyDocument.h"
+#include "MediaDirector.h"
+
 using namespace std;
 
 const double epsilon = 0.000001;
@@ -417,5 +421,25 @@ TEST (eighth, TestRemoveMedia2){
     //std::cout << dv2.getDescription() << std::endl;
     string desc2("combo(combo(combo(r(10 0 15 5) c(12 5 2) ))t(0 20 16 32 25 20) )");
     CHECK(desc2 == dv2.getDescription());
+}
+TEST (ninth, TestReadFile){
+    MyDocument mdoc;
+    string desc = "combo(r(0 0 3 2) c(0 0 5) combo(r(0 0 5 4) c(0 0 10) )combo(r(0 1 8 7) c(0 1 10) ))";
+    CHECK(mdoc.openDocument("myShape.txt") == desc);
+}
+TEST (ninth, TestMediaDirector){
+    MediaDirector md;
+    stack<MediaBuilder *> mbs;
+    md.setMediaBuilder(&mbs);
+
+    MyDocument mdoc;
+    md.concrete(mdoc.openDocument("myShape.txt"));
+
+    DescriptionVisitor dv;
+    mbs.top()->getMedia()->accept(&dv);
+    //cout << dv.getDescription() << endl;
+    string desc = "combo(r(0 0 3 2) c(0 0 5) combo(r(0 0 5 4) c(0 0 10) )combo(r(0 1 8 7) c(0 1 10) ))";
+    CHECK(dv.getDescription() == desc);
+
 }
 #endif // UTSHAPES_H_INCLUDED

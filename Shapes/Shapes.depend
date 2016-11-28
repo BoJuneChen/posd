@@ -66,26 +66,26 @@
 	"..\cppunitlite\TestHarness.h"
 	"utShapes.h"
 
-1447910799 d:\posd\cppunitlite\testharness.h
+1475580371 d:\posd\cppunitlite\testharness.h
 	"Test.h"
 	"TestResult.h"
 	"Failure.h"
 	"TestRegistry.h"
 
-1447910799 d:\posd\cppunitlite\test.h
+1475580371 d:\posd\cppunitlite\test.h
 	<cmath>
 	"SimpleString.h"
 
-1447910799 d:\posd\cppunitlite\simplestring.h
+1475580371 d:\posd\cppunitlite\simplestring.h
 
-1447910799 d:\posd\cppunitlite\testresult.h
+1475580371 d:\posd\cppunitlite\testresult.h
 
-1447910799 d:\posd\cppunitlite\failure.h
+1475580371 d:\posd\cppunitlite\failure.h
 	"SimpleString.h"
 
-1447910799 d:\posd\cppunitlite\testregistry.h
+1475580371 d:\posd\cppunitlite\testregistry.h
 
-1478021151 d:\posd\shapes\utshapes.h
+1480347545 d:\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
@@ -107,6 +107,9 @@
 	<stack>
 	"Text.h"
 	"TextMedia.h"
+	"Document.h"
+	"MyDocument.h"
+	"MediaDirector.h"
 
 1478016068 d:\posd\shapes\include\shapes.h
 	<vector>
@@ -318,4 +321,34 @@
 
 1478017807 source:d:\posd\shapes\src\textmedia.cpp
 	"TextMedia.h"
+
+1480344399 source:d:\posd\shapes\src\document.cpp
+
+1480345048 d:\posd\shapes\include\document.h
+	<string>
+
+1480345048 d:\posd\shapes\include\mydocument.h
+	"Document.h"
+	<fstream>
+	<iostream>
+
+1480344733 source:d:\posd\shapes\src\mydocument.cpp
+	"MyDocument.h"
+
+1480347798 source:d:\posd\shapes\src\mediadirector.cpp
+	"MediaDirector.h"
+	<iostream>
+	<sstream>
+	<cstdlib>
+	"Rectangle.h"
+	"Circle.h"
+	"Triangle.h"
+	"ComboMediaBuilder.h"
+	"ShapeMediaBuilder.h"
+	<stack>
+
+1480345556 d:\posd\shapes\include\mediadirector.h
+	"Media.h"
+	<string>
+	<stack>
 
