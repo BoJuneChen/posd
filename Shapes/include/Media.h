@@ -18,9 +18,9 @@ public :
 
 class Media {
 public :
-    virtual double area() const = 0 ;
-    virtual double perimeter() const = 0 ;
-    virtual void accept(MediaVisitor * mediaVisitor) = 0;
+    virtual double area() const=0;
+    virtual double perimeter() const=0;
+    virtual void accept(MediaVisitor * mediaVisitor)=0;
     virtual void add(Media * m) {
         throw std::string("Illegal: add on media");
     }
@@ -29,6 +29,10 @@ public :
         throw std::string("Illegal: remove on media");
     }
     virtual string description();
+    virtual void setName(string inputName);
+    virtual string getName();
+protected:
+    //std::string name;
 };
 
 class MediaBuilder{

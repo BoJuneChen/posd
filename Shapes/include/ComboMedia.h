@@ -7,7 +7,7 @@ class ComboMedia : public Media {
 
 private:
     std::vector<Media*> media;
-
+    string name;
 public:
     ComboMedia() ;
     ComboMedia( std::vector<Media*> m ) ;
@@ -18,6 +18,13 @@ public:
     void removeMedia(Media * m);
     string getType()const;
     string description();
+    void setName(string inputName){
+        name = inputName;
+    }
+    string getName(){
+        return name;
+    }
+
 };
 
 #endif // COMBOMEDIA_H

@@ -8,7 +8,7 @@ class ShapeMedia : public Media {
 
 private:
     Shape* shape ;
-
+    string name;
 public :
     ShapeMedia( Shape* s );
     void accept(MediaVisitor * mediaVisitor); //For hw#3 problem 2,3
@@ -17,6 +17,12 @@ public :
     Shape * getShape() const;
     string description();
     string getType()const;
+    void setName(string inputName){
+        name = inputName;
+    }
+    string getName(){
+        return name;
+    }
     //void removeMedia(Media * m){};
 };
 #endif // SHAPEMEDIA_H

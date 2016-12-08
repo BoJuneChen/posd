@@ -15,8 +15,15 @@ public:
     double perimeter() const;
     void accept(MediaVisitor* mediaVisitor);
     string getType()const ;
+    void setName(string inputName){
+        name = inputName;
+    }
+    string getName(){
+        return name;
+    }
 private:
     Text *text;
+    string name;
 };
 
 #endif // TEXTMEDIA_H

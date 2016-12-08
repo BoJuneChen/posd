@@ -62,9 +62,13 @@
 	<vector>
 	<cmath>
 
-1475580371 source:d:\posd\shapes\main.cpp
+1481219690 source:d:\posd\shapes\main.cpp
 	"..\cppunitlite\TestHarness.h"
 	"utShapes.h"
+	"GeometryController.h"
+	<iostream>
+	<string>
+	<stdio.h>
 
 1475580371 d:\posd\cppunitlite\testharness.h
 	"Test.h"
@@ -85,7 +89,7 @@
 
 1475580371 d:\posd\cppunitlite\testregistry.h
 
-1480347545 d:\posd\shapes\utshapes.h
+1481191572 d:\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
@@ -211,7 +215,7 @@
 1475757538 source:d:\posd\shapes\src\comboshape.cpp
 	"ComboShape.h"
 
-1478000268 d:\posd\shapes\include\comboshape.h
+1481190554 d:\posd\shapes\include\comboshape.h
 	"Shapes.h"
 	<vector>
 
@@ -242,16 +246,16 @@
 1476695034 c:\users\fox\documents\posd\shapes\include\combomedia.h
 	"Media.h"
 
-1478017747 d:\posd\shapes\include\combomedia.h
+1481191316 d:\posd\shapes\include\combomedia.h
 	"Media.h"
 	<string>
 
-1478017572 d:\posd\shapes\include\media.h
+1481191399 d:\posd\shapes\include\media.h
 	<string>
 	<vector>
 	"Shapes.h"
 
-1478017705 d:\posd\shapes\include\shapemedia.h
+1481191316 d:\posd\shapes\include\shapemedia.h
 	"Media.h"
 	"Shapes.h"
 	<string>
@@ -262,7 +266,7 @@
 1478017469 source:d:\posd\shapes\src\shapemedia.cpp
 	"ShapeMedia.h"
 
-1476715865 source:d:\posd\shapes\src\media.cpp
+1481191316 source:d:\posd\shapes\src\media.cpp
 	"Media.h"
 
 1478012171 d:\posd\shapes\include\areavisitor.h
@@ -315,7 +319,7 @@
 	<string>
 	"Rectangle.h"
 
-1478017807 d:\posd\shapes\include\textmedia.h
+1481191370 d:\posd\shapes\include\textmedia.h
 	"Media.h"
 	"Text.h"
 
@@ -335,20 +339,55 @@
 1480344733 source:d:\posd\shapes\src\mydocument.cpp
 	"MyDocument.h"
 
-1480347798 source:d:\posd\shapes\src\mediadirector.cpp
+1480350519 source:d:\posd\shapes\src\mediadirector.cpp
 	"MediaDirector.h"
-	<iostream>
-	<sstream>
-	<cstdlib>
+	"Media.h"
 	"Rectangle.h"
 	"Circle.h"
 	"Triangle.h"
 	"ComboMediaBuilder.h"
 	"ShapeMediaBuilder.h"
 	<stack>
+	<iostream>
+	<sstream>
+	<cstdlib>
 
 1480345556 d:\posd\shapes\include\mediadirector.h
 	"Media.h"
 	<string>
 	<stack>
+
+1481219338 d:\posd\shapes\include\geometrycontroller.h
+	<string>
+	<cstring>
+	<vector>
+	<iostream>
+	<cstdlib>
+	<sstream>
+	<ostream>
+	<fstream>
+	"Media.h"
+	"Shapes.h"
+	"ComboMedia.h"
+	"ShapeMedia.h"
+	"Rectangle.h"
+	"Circle.h"
+	"Triangle.h"
+	"DescriptionVisitor.h"
+	"AreaVisitor.h"
+	"PerimeterVisitor.h"
+	"NameVisitor.h"
+
+1481219588 source:d:\posd\shapes\src\geometrycontroller.cpp
+	"GeometryController.h"
+
+1481214005 d:\posd\shapes\include\namevisitor.h
+	<string>
+	"Media.h"
+	"ShapeMedia.h"
+	"ComboMedia.h"
+	"TextMedia.h"
+
+1481213944 source:d:\posd\shapes\src\namevisitor.cpp
+	"NameVisitor.h"
 

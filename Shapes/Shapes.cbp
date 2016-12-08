@@ -43,9 +43,11 @@
 		<Unit filename="include/ComboShape.h" />
 		<Unit filename="include/DescriptionVisitor.h" />
 		<Unit filename="include/Document.h" />
+		<Unit filename="include/GeometryController.h" />
 		<Unit filename="include/Media.h" />
 		<Unit filename="include/MediaDirector.h" />
 		<Unit filename="include/MyDocument.h" />
+		<Unit filename="include/NameVisitor.h" />
 		<Unit filename="include/PerimeterVisitor.h" />
 		<Unit filename="include/Rectangle.h" />
 		<Unit filename="include/ShapeMedia.h" />
@@ -62,9 +64,11 @@
 		<Unit filename="src/ComboShape.cpp" />
 		<Unit filename="src/DescriptionVisitor.cpp" />
 		<Unit filename="src/Document.cpp" />
+		<Unit filename="src/GeometryController.cpp" />
 		<Unit filename="src/Media.cpp" />
 		<Unit filename="src/MediaDirector.cpp" />
 		<Unit filename="src/MyDocument.cpp" />
+		<Unit filename="src/NameVisitor.cpp" />
 		<Unit filename="src/PerimeterVisitor.cpp" />
 		<Unit filename="src/Rectangle.cpp" />
 		<Unit filename="src/ShapeMedia.cpp" />

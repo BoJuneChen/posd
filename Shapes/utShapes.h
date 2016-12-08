@@ -234,6 +234,8 @@ TEST (seventh, TestRegularHexagon){ //HW3 problem 1
 
     DOUBLES_EQUAL(10.392,combo.area(),epsilon);
     DOUBLES_EQUAL(25.855824,combo.perimeter(),epsilon);
+    leftTriangleMedia.setName(std::string("a"));
+    CHECK(std::string("a")== leftTriangleMedia.getName());
 }
 TEST (senenth, TestAreaVisitor){ //HW3 problem 2
     AreaVisitor areaVisitor;
