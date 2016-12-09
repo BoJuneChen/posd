@@ -16,19 +16,15 @@ void GeometryController::ExecuteCommand(string command){
     }
     //cout << "analyzedCommand's size = " << analyzedCommand.size() <<endl;
     if(strcmp(analyzedCommand[0], "def") == 0 && (analyzedCommand.size() >= 4)){
-        //cout<< "AAAAA"<<endl;
         DefineNewMedia(analyzedCommand);
     }
     else if(strcmp(analyzedCommand[0], "add") == 0 && (analyzedCommand.size() == 4)){
-        //cout<< "CCCCCC"<<endl;
         AddMediaToCombo(analyzedCommand);
     }
     else if(strcmp(analyzedCommand[0], "show") == 0 && (analyzedCommand.size() == 1)){
-        //cout<< "EEEEEE"<<endl;
         Show();
     }
     else if(strcmp(analyzedCommand[0], "delete") == 0){
-        //cout<< "DDDDDD"<<endl;
         if(analyzedCommand.size() == 2){
             DeleteMediaByName(analyzedCommand[1]);
         }
@@ -37,11 +33,10 @@ void GeometryController::ExecuteCommand(string command){
         }
     }
     else if(strcmp(analyzedCommand[0], "save") == 0 && (analyzedCommand.size() == 5)) {
-        //cout<< "FFFFFF"<<endl;
         SaveFile(analyzedCommand);
     }
-    else if(strcmp(analyzedCommand[0], "load") == 0){
-        //cout<< "GGGGGG"<<endl;
+    else if(strcmp(analyzedCommand[0], "load") == 0 && (analyzedCommand.size() == 3)){
+        LoadFromFile(analyzedCommand);
     }
     else if(strcmp(analyzedCommand[1], "area") == 0 && (analyzedCommand.size() == 2)){
         GetArea(analyzedCommand[0]);
@@ -49,9 +44,32 @@ void GeometryController::ExecuteCommand(string command){
     else if(strcmp(analyzedCommand[1], "perimeter")== 0 &&(analyzedCommand.size() == 2)){
         GetPerimeter(analyzedCommand[0]);
     }
+    else if((strcmp(analyzedCommand[0], "Exit")== 0) || (strcmp(analyzedCommand[0], "exit")== 0)){
+        cout<< ">> Exiting system, Bye!" << endl;
+    }
+    else if((strcmp(analyzedCommand[0], "Help")== 0) || (strcmp(analyzedCommand[0], "help")== 0)){
+        DisplayCommandIndex();
+    }
     else{
         cout<< ">> This is an illegal command!" << endl;
     }
+}
+
+void GeometryController::DisplayCommandIndex(){
+    cout << "---COMMAND INDEX---" << endl;
+    cout << "def ¡§mediaName¡¨ = ¡§ShapeType¡¨(value)  --  can create media." << endl;
+    cout << "def ¡§comboMediaName¡¨ = combo {¡§mediaName1¡¨, ¡§mediaName2¡¨}  --  can create comboMedia." << endl;
+    cout << "¡§mediaName¡¨.area?  --  can get area of mediaName." << endl;
+    cout << "¡§mediaName¡¨.perimeter?  -- can get perimeter of mediaName." << endl;
+    cout << "save ¡§mediaName¡¨ to ¡§fileName¡¨ --  can save mediaName to fileName." << endl;
+    cout << "load ¡§fileName¡¨ --  can load from fileName." << endl;
+    cout << "add ¡§mediaName¡¨ to ¡§comboMediaName¡¨ --  can add mediaName to comboMediaName." << endl;
+    cout << "show  --  can display all Media." << endl;
+    cout << "delete ¡§mediaName¡¨ --  can delete mediaName." << endl;
+    cout << "delete ¡§mediaName¡¨ in ¡§comboMediaName¡¨ --  can delete all relationships of mediaName in comboMediaName." << endl;
+    cout << "help  --  can display this Index." << endl;
+    cout << "exit  --  can exit this program." << endl;
+    cout << "" <<endl;
 }
 
 Media* GeometryController::GetMediaByName(string name){
@@ -66,58 +84,68 @@ Media* GeometryController::GetMediaByName(string name){
 void GeometryController::DefineNewMedia(std::vector<char*> command){
     string mediaName = command[1];
     char* mediaShapeType = command[2];
-    if (strcmp(mediaShapeType, "combo") == 0){//  && (command.size() >= 3 )){
-        //cout<< "BBBBBB"<<endl;
-        Media* temp;
-        ComboMedia *cm = new ComboMedia();
-        cm -> setName(mediaName);
-        //cout << cm -> getName() << endl;
-        for (unsigned int cmdCounter = 3 ; cmdCounter < command.size(); cmdCounter++){
-            temp = GetMediaByName(command[cmdCounter]);
-            if(temp == nullptr){
-                cout << ">> " << command[cmdCounter] << " is not exist!" << endl;
+    if(GetMediaByName(mediaName) != nullptr){
+        cout<< ">> " << mediaName << " is already existed!" << endl;
+    }
+    else{
+        if (strcmp(mediaShapeType, "combo") == 0)
+        {
+            Media* temp;
+            ComboMedia *cm = new ComboMedia();
+            cm -> setName(mediaName);
+            //cout << cm -> getName() << endl;
+            for (unsigned int cmdCounter = 3 ; cmdCounter < command.size(); cmdCounter++)
+            {
+                temp = GetMediaByName(command[cmdCounter]);
+                if(temp == nullptr)
+                {
+                    cout << ">> " << command[cmdCounter] << " is not exist!" << endl;
+                }
+                else
+                {
+                    //cout << ">> " << command[cmdCounter] << " was found" << endl;
+                    cm->add(temp);
+                }
             }
-            else {
-                //cout << ">> " << command[cmdCounter] << " was found" << endl;
-                cm->add(temp);
-
-            }
+            mediaBase.push_back(cm);
         }
-        mediaBase.push_back(cm);
-    }
-    else if((strcmp(mediaShapeType, "Rectangle") == 0) && (command.size() == 7)){
-        double x = atof(command[3]);
-        double y = atof(command[4]);
-        double l = atof(command[5]);
-        double w = atof(command[6]);
-        ShapeMedia* sm = new ShapeMedia(new Rectangle(x, y, l, w));
-        sm->setName(mediaName);
-        mediaBase.push_back(sm);
-        cout << ">> Rectangle(" << x << "," << y << "," << l << "," << w << ")" <<endl;
-    }
-    else if((strcmp(mediaShapeType, "Circle") == 0)  && (command.size() == 6)){
-        double x = atof(command[3]);
-        double y = atof(command[4]);
-        double r = atof(command[5]);
-        ShapeMedia* sm = new ShapeMedia(new Circle(x, y, r));
-        sm->setName(mediaName);
-        mediaBase.push_back(sm);
-        cout << ">> Circle(" << x << "," << y << "," << r << ")" <<endl;
-    }
-    else if((strcmp(mediaShapeType, "Triangle") == 0)  && (command.size() == 9)){
-        double x1 = atof(command[3]);
-        double y1 = atof(command[4]);
-        double x2 = atof(command[5]);
-        double y2 = atof(command[6]);
-        double x3 = atof(command[7]);
-        double y3 = atof(command[8]);
-        ShapeMedia* sm = new ShapeMedia(new Triangle(x1, y1, x2, y2, x3, y3));
-        sm -> setName(mediaName);
-        mediaBase.push_back(sm);
-        cout << ">> Triangle(" << x1 << "," << y1 << "," << x2 << "," << y2 << "," << x3 << "," << y3 << ")" << endl;
-    }
-    else {
-        cout<< ">> This is an illegal command!" << endl;
+        else if((strcmp(mediaShapeType, "Rectangle") == 0) && (command.size() == 7))
+        {
+            double x = atof(command[3]);
+            double y = atof(command[4]);
+            double l = atof(command[5]);
+            double w = atof(command[6]);
+            ShapeMedia* sm = new ShapeMedia(new Rectangle(x, y, l, w));
+            sm->setName(mediaName);
+            mediaBase.push_back(sm);
+            cout << ">> Rectangle(" << x << "," << y << "," << l << "," << w << ")" <<endl;
+        }
+        else if((strcmp(mediaShapeType, "Circle") == 0)  && (command.size() == 6))
+        {
+            double x = atof(command[3]);
+            double y = atof(command[4]);
+            double r = atof(command[5]);
+            ShapeMedia* sm = new ShapeMedia(new Circle(x, y, r));
+            sm->setName(mediaName);
+            mediaBase.push_back(sm);
+            cout << ">> Circle(" << x << "," << y << "," << r << ")" <<endl;
+        }
+        else if((strcmp(mediaShapeType, "Triangle") == 0)  && (command.size() == 9))
+        {
+            double x1 = atof(command[3]);
+            double y1 = atof(command[4]);
+            double x2 = atof(command[5]);
+            double y2 = atof(command[6]);
+            double x3 = atof(command[7]);
+            double y3 = atof(command[8]);
+            ShapeMedia* sm = new ShapeMedia(new Triangle(x1, y1, x2, y2, x3, y3));
+            sm -> setName(mediaName);
+            mediaBase.push_back(sm);
+            cout << ">> Triangle(" << x1 << "," << y1 << "," << x2 << "," << y2 << "," << x3 << "," << y3 << ")" << endl;
+        }
+        else {
+            cout<< ">> This is an illegal command!" << endl;
+        }
     }
 }
 
@@ -216,9 +244,109 @@ void GeometryController::SaveFile(std::vector<char*> command){
         cout << ">> " << command[1] << " is not exist!" << endl;
     }
 }
-/*
-GeometryController::~GeometryController()
-{
-    //dtor
+
+void GeometryController::LoadFromFile(std::vector<char*> command){
+    char* temp = strtok(command[1],"¡§");
+    char* temp2 = strtok(command[2],"¡¨");
+    string fileName = temp;
+    fileName += ".";
+    fileName += temp2;
+    cout<< fileName << endl;
+    ifstream ifs(fileName, ios::in);
+    string desc;
+    string name;
+    if(ifs){
+        if(!ifs.eof()){
+            getline(ifs,desc);
+            getline(ifs,name);
+            cout << ">> loading " << desc << " ¡K" << endl;
+            std::vector<char> tempForAnalyzed(name.size()+1);
+            std::vector<char*> analyzedName;
+            strcpy(tempForAnalyzed.data(),name.c_str());
+            char* tempWord = strtok(tempForAnalyzed.data(),"(){}=,.? \"");
+            while(tempWord != NULL){
+                //cout << tempWord <<endl;
+                analyzedName.push_back(tempWord);
+                tempWord = strtok(NULL,"(){}=,.? \"");
+            }
+            stack<MediaBuilder *> mbs;
+            mediaBase.clear();
+            Concrete(&mbs,desc,analyzedName);
+        }
+    }
+    else{
+        cout << ">> " << fileName << " is not exist!" <<endl;
+    }
 }
-*/
+
+vector<double> GeometryController::getValues(string content, int startPosition, int endPosition){
+    vector<double> outputValues;
+    double value;
+    string desc = content.substr(startPosition + 2, endPosition - (startPosition + 2)); //2 means the shape title to first value's distance
+    stringstream valueString(desc);
+    while(valueString >> value) {
+        outputValues.push_back(value);
+    }
+    return outputValues;
+}
+
+void GeometryController::Concrete(std::stack<MediaBuilder*> *mb, string content, std::vector<char*> name){
+    int nameCounter = 0;
+    int comboCounter =0;
+    for(unsigned int i = 0; i < content.length(); i++){
+        if(content[i] == 'c'){
+            if(content[i+1] == 'o' && content[i+2] == 'm' && content[i+3] == 'b' && content[i+4] == 'o'){
+                mb -> push(new ComboMediaBuilder());
+                comboCounter++;
+                mb -> top() -> buildComboMedia();
+                mb -> top() -> getMedia()->setName(name[nameCounter]);
+                mediaBase.push_back(mb -> top() -> getMedia());
+                nameCounter++;
+            }
+            else if(content[i+1] == '('){
+                int endPosition = content.find_first_of(')', i);
+                vector<double> value = getValues(content, i, endPosition);
+                i = endPosition;
+                Circle* circle = new Circle(value[0], value[1], value[2]);
+                circle->setName(name[nameCounter]);
+                mediaBase.push_back(new ShapeMedia(circle));
+                if(comboCounter > 0){
+                    mb -> top() -> buildShapeMedia(circle);
+                }
+                nameCounter++;
+            }
+        }
+        else if(content[i] == 'r'){
+            int endPosition = content.find_first_of(')', i);
+            vector<double> value = getValues(content, i, endPosition);
+            i = endPosition;
+            Rectangle* rectangle = new Rectangle(value[0], value[1], value[2], value[3]);
+            rectangle->setName(name[nameCounter]);
+            mediaBase.push_back(new ShapeMedia(rectangle));
+            if(comboCounter > 0){
+                mb -> top() -> buildShapeMedia(rectangle);
+            }
+            nameCounter++;
+        }
+        else if(content[i] == 't'){
+            int endPosition = content.find_first_of(')', i);
+            vector<double> value = getValues(content, i, endPosition);
+            i = endPosition;
+            Triangle* triangle = new Triangle(value[0], value[1], value[2], value[3], value[4], value[5]);
+            triangle->setName(name[nameCounter]);
+            mediaBase.push_back(new ShapeMedia(triangle));
+            if(comboCounter > 0){
+                mb -> top() -> buildShapeMedia(triangle);
+            }
+            nameCounter++;
+        }
+        else if(content[i] == ')'){
+            if((mb -> size() >= 1) &&( comboCounter > 1 )) {
+                Media *combo = mb -> top() -> getMedia();
+                mb -> pop();
+                ComboMediaBuilder* topCombo = dynamic_cast<ComboMediaBuilder*> (mb -> top());
+                topCombo -> addComboMedia(combo);
+            }
+        }
+    }
+}

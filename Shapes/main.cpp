@@ -11,11 +11,10 @@ int main()
     TestRegistry::runAllTests(tr);
     string command;
     GeometryController gc;
-    //string output;
+    gc.DisplayCommandIndex();
     while (command != "Exit" && command != "exit"){
         std::cout<< ":- " ;
         getline(cin,command);
-        //cout<< ">> " << command <<endl;
         if(command != ""){
             gc.ExecuteCommand(command);
         }

@@ -15,5 +15,6 @@ public :
 
 private :
   	std::stack<MediaBuilder*> *mb;
+  	vector<double> getValues(string content, int startPosition, int endPosition);
 };
 #endif // MEDIADIRECTOR_H

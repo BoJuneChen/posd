@@ -10,7 +10,7 @@
 #include <sstream>
 #include <cstdlib>
 
-vector<double> getValues(string content, int startPosition, int endPosition){
+vector<double> MediaDirector::getValues(string content, int startPosition, int endPosition){
     vector<double> outputValues;
     double value;
     string desc = content.substr(startPosition + 2, endPosition - (startPosition + 2)); //2 means the shape title to first value's distance

@@ -148,30 +148,34 @@
 1478000429 source:d:\posd\shapes\src\rectangle.cpp
 	"Rectangle.h"
 
-1475635916 source:c:\users\fox\documents\posd\shapes\main.cpp
+1481274793 source:c:\users\fox\documents\posd\shapes\main.cpp
 	"..\cppunitlite\TestHarness.h"
 	"utShapes.h"
+	"GeometryController.h"
+	<iostream>
+	<string>
+	<stdio.h>
 
-1447910799 c:\users\fox\documents\posd\cppunitlite\testharness.h
+1479794301 c:\users\fox\documents\posd\cppunitlite\testharness.h
 	"Test.h"
 	"TestResult.h"
 	"Failure.h"
 	"TestRegistry.h"
 
-1447910799 c:\users\fox\documents\posd\cppunitlite\test.h
+1479794301 c:\users\fox\documents\posd\cppunitlite\test.h
 	<cmath>
 	"SimpleString.h"
 
-1447910799 c:\users\fox\documents\posd\cppunitlite\simplestring.h
+1479794301 c:\users\fox\documents\posd\cppunitlite\simplestring.h
 
-1447910799 c:\users\fox\documents\posd\cppunitlite\testresult.h
+1479794301 c:\users\fox\documents\posd\cppunitlite\testresult.h
 
-1447910799 c:\users\fox\documents\posd\cppunitlite\failure.h
+1479794301 c:\users\fox\documents\posd\cppunitlite\failure.h
 	"SimpleString.h"
 
-1447910799 c:\users\fox\documents\posd\cppunitlite\testregistry.h
+1479794301 c:\users\fox\documents\posd\cppunitlite\testregistry.h
 
-1476695112 c:\users\fox\documents\posd\shapes\utshapes.h
+1481256734 c:\users\fox\documents\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
@@ -181,35 +185,53 @@
 	<vector>
 	<stdio.h>
 	<string>
+	<iostream>
 	"ComboMedia.h"
 	"Media.h"
 	"ShapeMedia.h"
+	"AreaVisitor.h"
+	"PerimeterVisitor.h"
+	"DescriptionVisitor.h"
+	"ShapeMediaBuilder.h"
+	"ComboMediaBuilder.h"
+	<stack>
+	"Text.h"
+	"TextMedia.h"
+	"Document.h"
+	"MyDocument.h"
+	"MediaDirector.h"
 
-1476421424 c:\users\fox\documents\posd\shapes\include\shapes.h
+1479794300 c:\users\fox\documents\posd\shapes\include\shapes.h
 	<vector>
 	<cmath>
 	<string>
 
-1475636462 c:\users\fox\documents\posd\shapes\include\circle.h
+1479794300 c:\users\fox\documents\posd\shapes\include\circle.h
 	"Shapes.h"
+	<string>
+	<sstream>
 
-1475641465 c:\users\fox\documents\posd\shapes\include\triangle.h
+1479794300 c:\users\fox\documents\posd\shapes\include\triangle.h
 	"Shapes.h"
+	<string>
+	<sstream>
 
-1475635803 c:\users\fox\documents\posd\shapes\include\rectangle.h
+1479794300 c:\users\fox\documents\posd\shapes\include\rectangle.h
 	"Shapes.h"
+	<string>
+	<sstream>
 
-1475635803 source:c:\users\fox\documents\posd\shapes\src\circle.cpp
+1479794301 source:c:\users\fox\documents\posd\shapes\src\circle.cpp
 	"Circle.h"
 
-1475635803 source:c:\users\fox\documents\posd\shapes\src\rectangle.cpp
+1479794301 source:c:\users\fox\documents\posd\shapes\src\rectangle.cpp
 	"Rectangle.h"
 
-1476421424 source:c:\users\fox\documents\posd\shapes\src\shapes.cpp
+1479794301 source:c:\users\fox\documents\posd\shapes\src\shapes.cpp
 	"Shapes.h"
 	<stdio.h>
 
-1475648932 source:c:\users\fox\documents\posd\shapes\src\triangle.cpp
+1479794301 source:c:\users\fox\documents\posd\shapes\src\triangle.cpp
 	"Triangle.h"
 
 1475757538 source:d:\posd\shapes\src\comboshape.cpp
@@ -219,32 +241,35 @@
 	"Shapes.h"
 	<vector>
 
-1476421424 c:\users\fox\documents\posd\shapes\include\comboshape.h
+1479794300 c:\users\fox\documents\posd\shapes\include\comboshape.h
 	"Shapes.h"
 	<vector>
 
-1476421424 source:c:\users\fox\documents\posd\shapes\src\comboshape.cpp
+1479794301 source:c:\users\fox\documents\posd\shapes\src\comboshape.cpp
 	"ComboShape.h"
 
-1476688273 source:c:\users\fox\documents\posd\shapes\src\media.cpp
+1479794301 source:c:\users\fox\documents\posd\shapes\src\media.cpp
 	"Media.h"
 
-1476691723 c:\users\fox\documents\posd\shapes\include\media.h
+1481256734 c:\users\fox\documents\posd\shapes\include\media.h
 	<string>
 	<vector>
-
-1476691695 source:c:\users\fox\documents\posd\shapes\src\shapemedia.cpp
-	"ShapeMedia.h"
-
-1476691695 c:\users\fox\documents\posd\shapes\include\shapemedia.h
-	"Media.h"
 	"Shapes.h"
 
-1476691694 source:c:\users\fox\documents\posd\shapes\src\combomedia.cpp
+1479794301 source:c:\users\fox\documents\posd\shapes\src\shapemedia.cpp
+	"ShapeMedia.h"
+
+1481271503 c:\users\fox\documents\posd\shapes\include\shapemedia.h
+	"Media.h"
+	"Shapes.h"
+	<string>
+
+1479794301 source:c:\users\fox\documents\posd\shapes\src\combomedia.cpp
 	"ComboMedia.h"
 
-1476695034 c:\users\fox\documents\posd\shapes\include\combomedia.h
+1481256734 c:\users\fox\documents\posd\shapes\include\combomedia.h
 	"Media.h"
+	<string>
 
 1481191316 d:\posd\shapes\include\combomedia.h
 	"Media.h"
@@ -390,4 +415,148 @@
 
 1481213944 source:d:\posd\shapes\src\namevisitor.cpp
 	"NameVisitor.h"
+
+1479794300 c:\users\fox\documents\posd\shapes\include\areavisitor.h
+	"Media.h"
+	"ShapeMedia.h"
+	"ComboMedia.h"
+	"TextMedia.h"
+
+1481256734 c:\users\fox\documents\posd\shapes\include\textmedia.h
+	"Media.h"
+	"Text.h"
+
+1479794300 c:\users\fox\documents\posd\shapes\include\text.h
+	<string>
+	"Rectangle.h"
+
+1479794300 c:\users\fox\documents\posd\shapes\include\perimetervisitor.h
+	"Media.h"
+	"ShapeMedia.h"
+	"ComboMedia.h"
+	"TextMedia.h"
+
+1479794300 c:\users\fox\documents\posd\shapes\include\descriptionvisitor.h
+	<string>
+	"Media.h"
+	"ShapeMedia.h"
+	"ComboMedia.h"
+	"TextMedia.h"
+
+1479794300 c:\users\fox\documents\posd\shapes\include\shapemediabuilder.h
+	"Media.h"
+	"ShapeMedia.h"
+
+1479794300 c:\users\fox\documents\posd\shapes\include\combomediabuilder.h
+	"Media.h"
+	"ShapeMedia.h"
+	"ComboMedia.h"
+
+1481256734 c:\users\fox\documents\posd\shapes\include\document.h
+	<string>
+
+1481256734 c:\users\fox\documents\posd\shapes\include\mydocument.h
+	"Document.h"
+	<fstream>
+	<iostream>
+
+1481269510 c:\users\fox\documents\posd\shapes\include\mediadirector.h
+	"Media.h"
+	<string>
+	<stack>
+
+1481275571 c:\users\fox\documents\posd\shapes\include\geometrycontroller.h
+	<string>
+	<cstring>
+	<vector>
+	<iostream>
+	<cstdlib>
+	<sstream>
+	<ostream>
+	<fstream>
+	<stack>
+	"Media.h"
+	"Shapes.h"
+	"ComboMedia.h"
+	"ShapeMedia.h"
+	"Rectangle.h"
+	"Circle.h"
+	"Triangle.h"
+	"DescriptionVisitor.h"
+	"AreaVisitor.h"
+	"PerimeterVisitor.h"
+	"NameVisitor.h"
+	"ComboMediaBuilder.h"
+	"ShapeMediaBuilder.h"
+
+1481256734 c:\users\fox\documents\posd\shapes\include\namevisitor.h
+	<string>
+	"Media.h"
+	"ShapeMedia.h"
+	"ComboMedia.h"
+	"TextMedia.h"
+
+1479794301 source:c:\users\fox\documents\posd\shapes\src\areavisitor.cpp
+	"AreaVisitor.h"
+
+1479794301 source:c:\users\fox\documents\posd\shapes\src\combomediabuilder.cpp
+	"ComboMediaBuilder.h"
+
+1479794301 source:c:\users\fox\documents\posd\shapes\src\descriptionvisitor.cpp
+	"DescriptionVisitor.h"
+
+1481256734 source:c:\users\fox\documents\posd\shapes\src\document.cpp
+
+1481269510 source:c:\users\fox\documents\posd\shapes\src\mediadirector.cpp
+	"MediaDirector.h"
+	"Media.h"
+	"Rectangle.h"
+	"Circle.h"
+	"Triangle.h"
+	"ComboMediaBuilder.h"
+	"ShapeMediaBuilder.h"
+	<stack>
+	<iostream>
+	<sstream>
+	<cstdlib>
+
+1481256734 source:c:\users\fox\documents\posd\shapes\src\mydocument.cpp
+	"MyDocument.h"
+
+1481256734 source:c:\users\fox\documents\posd\shapes\src\namevisitor.cpp
+	"NameVisitor.h"
+
+1479794301 source:c:\users\fox\documents\posd\shapes\src\perimetervisitor.cpp
+	"PerimeterVisitor.h"
+
+1479794301 source:c:\users\fox\documents\posd\shapes\src\shapemediabuilder.cpp
+	"ShapeMediaBuilder.h"
+
+1479794301 source:c:\users\fox\documents\posd\shapes\src\text.cpp
+	"Text.h"
+
+1479794301 source:c:\users\fox\documents\posd\shapes\src\textmedia.cpp
+	"TextMedia.h"
+
+1481275542 source:c:\users\fox\documents\posd\shapes\src\geometrycontroller.cpp
+	"GeometryController.h"
+
+1481269196 c:\users\fox\documents\posd\shapes\include\geometrydirector.h
+	"Media.h"
+	<string>
+	<stack>
+	<vector>
+
+1481270688 source:c:\users\fox\documents\posd\shapes\src\geometrydirector.cpp
+	"GeometryDirector.h"
+	"Media.h"
+	"Rectangle.h"
+	"Circle.h"
+	"Triangle.h"
+	"ComboMediaBuilder.h"
+	"ShapeMediaBuilder.h"
+	<stack>
+	<iostream>
+	<sstream>
+	<cstdlib>
 
