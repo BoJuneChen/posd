@@ -11,6 +11,6 @@ def cMale = Circle(3,2,1)
 add cMale to comboExclamation
 
 save comboExclamation to ¡§myShapes.txt¡¨
-
+load ¡§myShapes.txt¡¨
 
 def rTall = Triangle(1,10,2,8,10,20)

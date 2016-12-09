@@ -259,7 +259,7 @@ void GeometryController::LoadFromFile(std::vector<char*> command){
         if(!ifs.eof()){
             getline(ifs,desc);
             getline(ifs,name);
-            cout << ">> loading " << desc << " ¡K" << endl;
+            cout << ">> loading " << fileName << " ¡K" << endl;
             std::vector<char> tempForAnalyzed(name.size()+1);
             std::vector<char*> analyzedName;
             strcpy(tempForAnalyzed.data(),name.c_str());
