@@ -1,10 +1,12 @@
 #include "GeometryController.h"
+#include <sstream>
 
 GeometryController::GeometryController(){
     //ctor
 }
 
 void GeometryController::ExecuteCommand(string command){
+    string result;
     std::vector<char> tempForAnalyzed(command.size()+1);
     std::vector<char*> analyzedCommand;
     strcpy(tempForAnalyzed.data(),command.c_str());
@@ -39,10 +41,10 @@ void GeometryController::ExecuteCommand(string command){
         LoadFromFile(analyzedCommand);
     }
     else if(strcmp(analyzedCommand[1], "area") == 0 && (analyzedCommand.size() == 2)){
-        GetArea(analyzedCommand[0]);
+        cout << GetArea(analyzedCommand[0]) << endl;
     }
     else if(strcmp(analyzedCommand[1], "perimeter")== 0 &&(analyzedCommand.size() == 2)){
-        GetPerimeter(analyzedCommand[0]);
+        cout << GetPerimeter(analyzedCommand[0]) << endl;
     }
     else if((strcmp(analyzedCommand[0], "Exit")== 0) || (strcmp(analyzedCommand[0], "exit")== 0)){
         cout<< ">> Exiting system, Bye!" << endl;
@@ -82,10 +84,14 @@ Media* GeometryController::GetMediaByName(string name){
 }
 
 void GeometryController::DefineNewMedia(std::vector<char*> command){
+    stringstream tempSs ;
+    string result = "";
     string mediaName = command[1];
     char* mediaShapeType = command[2];
     if(GetMediaByName(mediaName) != nullptr){
         cout<< ">> " << mediaName << " is already existed!" << endl;
+        //tempSs << ">> " << mediaName << " is already existed!" << endl;
+        //result = tempSs.str();
     }
     else{
         if (strcmp(mediaShapeType, "combo") == 0)
@@ -181,24 +187,34 @@ void GeometryController::Show(){
     }
 }
 
-void GeometryController::GetArea(string name){
+string GeometryController::GetArea(string name){ //done
+    stringstream tempSs ;
+    string result = "";
     Media *m = GetMediaByName(name);
     if(m != nullptr){
-        cout << ">> " << m->area() << endl;
+        tempSs << ">> " << m->area();
+        result = tempSs.str();
     }
     else{
-        cout << ">> " << name << " is not exist!" << endl;
+        tempSs << ">> " << name << " is not exist!";
+        result = tempSs.str();
     }
+    return result;
  }
 
-void GeometryController::GetPerimeter(string name){
+string GeometryController::GetPerimeter(string name){ //done
+    stringstream tempSs ;
+    string result = "";
     Media *m = GetMediaByName(name);
     if(m != nullptr){
-        cout << ">> " << m->perimeter() << endl;
+        tempSs << ">> " << m->perimeter();
+        result = tempSs.str();
     }
     else{
-        cout << ">> " << name << " is not exist!" << endl;
+        tempSs << ">> " << name << " is not exist!";
+        result = tempSs.str();
     }
+    return result;
 }
 
 void GeometryController::DeleteMediaByName(string name){

@@ -465,7 +465,7 @@
 	<string>
 	<stack>
 
-1481275571 c:\users\fox\documents\posd\shapes\include\geometrycontroller.h
+1483005946 c:\users\fox\documents\posd\shapes\include\geometrycontroller.h
 	<string>
 	<cstring>
 	<vector>
@@ -538,8 +538,9 @@
 1479794301 source:c:\users\fox\documents\posd\shapes\src\textmedia.cpp
 	"TextMedia.h"
 
-1481276695 source:c:\users\fox\documents\posd\shapes\src\geometrycontroller.cpp
+1483005023 source:c:\users\fox\documents\posd\shapes\src\geometrycontroller.cpp
 	"GeometryController.h"
+	<sstream>
 
 1481269196 c:\users\fox\documents\posd\shapes\include\geometrydirector.h
 	"Media.h"
