@@ -17,6 +17,9 @@ int main()
         getline(cin,command);
         if(command != ""){
             gc.ExecuteCommand(command);
+            if( gc.GetResult() !=""){
+                cout << gc.GetResult();
+            }
         }
     }
     return 0;

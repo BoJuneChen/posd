@@ -5,6 +5,27 @@ GeometryController::GeometryController(){
     //ctor
 }
 
+string GeometryController::GetResult(){
+    return result;
+}
+
+string GeometryController::GetComboMediaDes(string comboName){
+    Media* combo = GetMediaByName(comboName);
+    if(combo != nullptr){
+        if(combo->getType() == "ComboMedia"){
+            DescriptionVisitor dv;
+            combo->accept(&dv);
+            return dv.getDescription();
+        }
+        else {
+            return "It's not a ComboMedia";
+        }
+    }
+    else{
+        return "It's not Exist";
+    }
+}
+
 void GeometryController::ExecuteCommand(string command){
     string result;
     std::vector<char> tempForAnalyzed(command.size()+1);
@@ -19,12 +40,17 @@ void GeometryController::ExecuteCommand(string command){
     //cout << "analyzedCommand's size = " << analyzedCommand.size() <<endl;
     if(strcmp(analyzedCommand[0], "def") == 0 && (analyzedCommand.size() >= 4)){
         DefineNewMedia(analyzedCommand);
+        /*if(GetResult() != ""){
+            cout << GetResult() << endl;
+        }*/
     }
     else if(strcmp(analyzedCommand[0], "add") == 0 && (analyzedCommand.size() == 4)){
         AddMediaToCombo(analyzedCommand);
+        //cout << GetResult() << endl;
     }
     else if(strcmp(analyzedCommand[0], "show") == 0 && (analyzedCommand.size() == 1)){
         Show();
+        //cout << GetResult();
     }
     else if(strcmp(analyzedCommand[0], "delete") == 0){
         if(analyzedCommand.size() == 2){
@@ -36,24 +62,28 @@ void GeometryController::ExecuteCommand(string command){
     }
     else if(strcmp(analyzedCommand[0], "save") == 0 && (analyzedCommand.size() == 5)) {
         SaveFile(analyzedCommand);
+        //cout << GetResult() << endl;
     }
     else if(strcmp(analyzedCommand[0], "load") == 0 && (analyzedCommand.size() == 3)){
         LoadFromFile(analyzedCommand);
+        //cout << GetResult() << endl;
     }
     else if(strcmp(analyzedCommand[1], "area") == 0 && (analyzedCommand.size() == 2)){
-        cout << GetArea(analyzedCommand[0]) << endl;
+        GetArea(analyzedCommand[0]);
+        //cout << GetResult() << endl;
     }
     else if(strcmp(analyzedCommand[1], "perimeter")== 0 &&(analyzedCommand.size() == 2)){
-        cout << GetPerimeter(analyzedCommand[0]) << endl;
+        GetPerimeter(analyzedCommand[0]);
+        //cout << GetResult() << endl;
     }
     else if((strcmp(analyzedCommand[0], "Exit")== 0) || (strcmp(analyzedCommand[0], "exit")== 0)){
-        cout<< ">> Exiting system, Bye!" << endl;
+        //cout<< ">> Exiting system, Bye!" << endl;
     }
     else if((strcmp(analyzedCommand[0], "Help")== 0) || (strcmp(analyzedCommand[0], "help")== 0)){
         DisplayCommandIndex();
     }
     else{
-        cout<< ">> This is an illegal command!" << endl;
+        //cout<< ">> This is an illegal command!" << endl;
     }
 }
 
@@ -83,34 +113,34 @@ Media* GeometryController::GetMediaByName(string name){
     return nullptr;
 }
 
-void GeometryController::DefineNewMedia(std::vector<char*> command){
+void GeometryController::DefineNewMedia(std::vector<char*> command){ //done
     stringstream tempSs ;
-    string result = "";
     string mediaName = command[1];
     char* mediaShapeType = command[2];
     if(GetMediaByName(mediaName) != nullptr){
-        cout<< ">> " << mediaName << " is already existed!" << endl;
-        //tempSs << ">> " << mediaName << " is already existed!" << endl;
-        //result = tempSs.str();
+        //cout<< ">> " << mediaName << " is already existed!" << endl;
+        tempSs << ">> " << mediaName << " is already existed!"<< "\n";
+
     }
     else{
         if (strcmp(mediaShapeType, "combo") == 0)
         {
-            Media* temp;
+            Media* tempMedia;
             ComboMedia *cm = new ComboMedia();
             cm -> setName(mediaName);
             //cout << cm -> getName() << endl;
             for (unsigned int cmdCounter = 3 ; cmdCounter < command.size(); cmdCounter++)
             {
-                temp = GetMediaByName(command[cmdCounter]);
-                if(temp == nullptr)
+                tempMedia = GetMediaByName(command[cmdCounter]);
+                if(tempMedia == nullptr)
                 {
-                    cout << ">> " << command[cmdCounter] << " is not exist!" << endl;
+                    tempSs << ">> " << command[cmdCounter] << " is not exist!"<< "\n" ;
                 }
                 else
                 {
                     //cout << ">> " << command[cmdCounter] << " was found" << endl;
-                    cm->add(temp);
+                    cm->add(tempMedia);
+                    tempSs.clear();
                 }
             }
             mediaBase.push_back(cm);
@@ -124,7 +154,7 @@ void GeometryController::DefineNewMedia(std::vector<char*> command){
             ShapeMedia* sm = new ShapeMedia(new Rectangle(x, y, l, w));
             sm->setName(mediaName);
             mediaBase.push_back(sm);
-            cout << ">> Rectangle(" << x << "," << y << "," << l << "," << w << ")" <<endl;
+            tempSs << ">> Rectangle(" << x << "," << y << "," << l << "," << w << ")"<< "\n";
         }
         else if((strcmp(mediaShapeType, "Circle") == 0)  && (command.size() == 6))
         {
@@ -134,7 +164,7 @@ void GeometryController::DefineNewMedia(std::vector<char*> command){
             ShapeMedia* sm = new ShapeMedia(new Circle(x, y, r));
             sm->setName(mediaName);
             mediaBase.push_back(sm);
-            cout << ">> Circle(" << x << "," << y << "," << r << ")" <<endl;
+            tempSs << ">> Circle(" << x << "," << y << "," << r << ")"<< "\n";
         }
         else if((strcmp(mediaShapeType, "Triangle") == 0)  && (command.size() == 9))
         {
@@ -147,17 +177,19 @@ void GeometryController::DefineNewMedia(std::vector<char*> command){
             ShapeMedia* sm = new ShapeMedia(new Triangle(x1, y1, x2, y2, x3, y3));
             sm -> setName(mediaName);
             mediaBase.push_back(sm);
-            cout << ">> Triangle(" << x1 << "," << y1 << "," << x2 << "," << y2 << "," << x3 << "," << y3 << ")" << endl;
+            tempSs << ">> Triangle(" << x1 << "," << y1 << "," << x2 << "," << y2 << "," << x3 << "," << y3 << ")" << "\n";
         }
         else {
-            cout<< ">> This is an illegal command!" << endl;
+            tempSs << ">> This is an illegal command!"<< "\n";
         }
     }
+    result = tempSs.str();
 }
 
-void GeometryController::AddMediaToCombo(std::vector<char*> command){
-    Media * shapeMedia = GetMediaByName(command[1]);
-    Media * comboMedia = GetMediaByName(command[3]);
+void GeometryController::AddMediaToCombo(std::vector<char*> command){ //done
+    stringstream tempSs ;
+    Media* shapeMedia = GetMediaByName(command[1]);
+    Media* comboMedia = GetMediaByName(command[3]);
     if(shapeMedia != nullptr){
         if(comboMedia != nullptr){
             comboMedia->add(shapeMedia);
@@ -165,59 +197,56 @@ void GeometryController::AddMediaToCombo(std::vector<char*> command){
             NameVisitor nv;
             comboMedia->accept(&dv);
             comboMedia->accept(&nv);
-            cout << ">> " << command[3] << " = " << nv.getNames() << "= " << dv.getDescription() << endl;
+            tempSs << ">> " << command[3] << " = " << nv.getNames() << "= " << dv.getDescription() << "\n";
         }
         else {
-            cout << ">> ComboMedia which named " << command[3] << " is not exist!" << endl;
+            tempSs << ">> ComboMedia which named " << command[3] << " is not exist!" << "\n";
         }
     }
     else {
-        cout << ">> ShapeMedia which named " << command[1] << " is not exist!" << endl;
+        tempSs << ">> ShapeMedia which named " << command[1] << " is not exist!" << "\n";
     }
+    result = tempSs.str();
 }
 
-void GeometryController::Show(){
+void GeometryController::Show(){ //done
+    stringstream tempSs ;
     if(mediaBase.size()>0){
         for(Media *m :mediaBase){
-            cout << m->getName() << endl;
+            tempSs << m->getName() << "\n";
         }
     }
     else {
-        cout << "There is no any media." << endl;
+        tempSs << "There is no any media." << "\n";
     }
+    result = tempSs.str();
 }
 
-string GeometryController::GetArea(string name){ //done
+void GeometryController::GetArea(string name){ //done
     stringstream tempSs ;
-    string result = "";
     Media *m = GetMediaByName(name);
     if(m != nullptr){
-        tempSs << ">> " << m->area();
-        result = tempSs.str();
+        tempSs << ">> " << m->area() << "\n";
     }
     else{
-        tempSs << ">> " << name << " is not exist!";
-        result = tempSs.str();
+        tempSs << ">> " << name << " is not exist!" << "\n";
     }
-    return result;
+    result = tempSs.str();
  }
 
-string GeometryController::GetPerimeter(string name){ //done
+void GeometryController::GetPerimeter(string name){ //done
     stringstream tempSs ;
-    string result = "";
     Media *m = GetMediaByName(name);
     if(m != nullptr){
-        tempSs << ">> " << m->perimeter();
-        result = tempSs.str();
+        tempSs << ">> " << m->perimeter() << "\n";
     }
     else{
-        tempSs << ">> " << name << " is not exist!";
-        result = tempSs.str();
+        tempSs << ">> " << name << " is not exist!" << "\n";
     }
-    return result;
+    result = tempSs.str();
 }
 
-void GeometryController::DeleteMediaByName(string name){
+void GeometryController::DeleteMediaByName(string name){ //do not need to refactoring
     int counter =0;
     for (Media *media : mediaBase){
         if(media->getName() == name){
@@ -225,22 +254,28 @@ void GeometryController::DeleteMediaByName(string name){
         }
         counter++;
     }
+    result = "";
 }
 
-void GeometryController::DeleteMediaFromCombo(std::vector<char*> command){
+void GeometryController::DeleteMediaFromCombo(std::vector<char*> command){ //done
+    stringstream tempSs;
     Media * needToDeletesMedia = GetMediaByName(command[1]);
     Media * cm = GetMediaByName(command[3]);
     if(needToDeletesMedia != nullptr){
         if(cm->getType() == "ComboMedia"){
             cm->removeMedia(needToDeletesMedia);
+            result = "";
         }
         else{
-            cout<< ">> " << command[3] << " is not a ComboMedia" <<endl;
+            tempSs<< ">> " << command[3] << " is not a ComboMedia" << "\n";
+            result = tempSs.str();
         }
     }
+
 }
 
-void GeometryController::SaveFile(std::vector<char*> command){
+void GeometryController::SaveFile(std::vector<char*> command){ //done
+    stringstream tempSs ;
     Media *m = GetMediaByName(command[1]);
     char* temp = strtok(command[3],"¡§");
     char* temp2 = strtok(command[4],"¡¨");
@@ -254,20 +289,22 @@ void GeometryController::SaveFile(std::vector<char*> command){
         m->accept(&dv);
         m->accept(&nv);
         ofstream(fileName) << dv.getDescription() << "\n" << nv.getNames();
-        cout << ">> " << m->getName() << " saved to " << fileName <<endl;
+        tempSs << ">> " << m->getName() << " saved to " << fileName << "\n";
     }
     else{
-        cout << ">> " << command[1] << " is not exist!" << endl;
+        tempSs << ">> " << command[1] << " is not exist!" << "\n";
     }
+    result = tempSs.str();
 }
 
 void GeometryController::LoadFromFile(std::vector<char*> command){
+    stringstream tempSs ;
     char* temp = strtok(command[1],"¡§");
     char* temp2 = strtok(command[2],"¡¨");
     string fileName = temp;
     fileName += ".";
     fileName += temp2;
-    cout<< fileName << endl;
+    //cout<< fileName << endl;
     ifstream ifs(fileName, ios::in);
     string desc;
     string name;
@@ -275,7 +312,7 @@ void GeometryController::LoadFromFile(std::vector<char*> command){
         if(!ifs.eof()){
             getline(ifs,desc);
             getline(ifs,name);
-            cout << ">> loading " << fileName << " ¡K" << endl;
+            tempSs << ">> loading " << fileName << " ¡K" << "\n";
             std::vector<char> tempForAnalyzed(name.size()+1);
             std::vector<char*> analyzedName;
             strcpy(tempForAnalyzed.data(),name.c_str());
@@ -291,8 +328,9 @@ void GeometryController::LoadFromFile(std::vector<char*> command){
         }
     }
     else{
-        cout << ">> " << fileName << " is not exist!" <<endl;
+        tempSs << ">> " << fileName << " is not exist!" << "\n";
     }
+    result = tempSs.str();
 }
 
 vector<double> GeometryController::getValues(string content, int startPosition, int endPosition){

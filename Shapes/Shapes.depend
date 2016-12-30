@@ -62,7 +62,7 @@
 	<vector>
 	<cmath>
 
-1481219690 source:d:\posd\shapes\main.cpp
+1483113366 source:d:\posd\shapes\main.cpp
 	"..\cppunitlite\TestHarness.h"
 	"utShapes.h"
 	"GeometryController.h"
@@ -89,7 +89,7 @@
 
 1475580371 d:\posd\cppunitlite\testregistry.h
 
-1481191572 d:\posd\shapes\utshapes.h
+1483120190 d:\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
@@ -114,6 +114,7 @@
 	"Document.h"
 	"MyDocument.h"
 	"MediaDirector.h"
+	"GeometryController.h"
 
 1478016068 d:\posd\shapes\include\shapes.h
 	<vector>
@@ -280,7 +281,7 @@
 	<vector>
 	"Shapes.h"
 
-1481191316 d:\posd\shapes\include\shapemedia.h
+1483109839 d:\posd\shapes\include\shapemedia.h
 	"Media.h"
 	"Shapes.h"
 	<string>
@@ -364,7 +365,7 @@
 1480344733 source:d:\posd\shapes\src\mydocument.cpp
 	"MyDocument.h"
 
-1480350519 source:d:\posd\shapes\src\mediadirector.cpp
+1483109839 source:d:\posd\shapes\src\mediadirector.cpp
 	"MediaDirector.h"
 	"Media.h"
 	"Rectangle.h"
@@ -377,12 +378,12 @@
 	<sstream>
 	<cstdlib>
 
-1480345556 d:\posd\shapes\include\mediadirector.h
+1483109839 d:\posd\shapes\include\mediadirector.h
 	"Media.h"
 	<string>
 	<stack>
 
-1481219338 d:\posd\shapes\include\geometrycontroller.h
+1483115443 d:\posd\shapes\include\geometrycontroller.h
 	<string>
 	<cstring>
 	<vector>
@@ -391,6 +392,7 @@
 	<sstream>
 	<ostream>
 	<fstream>
+	<stack>
 	"Media.h"
 	"Shapes.h"
 	"ComboMedia.h"
@@ -402,9 +404,12 @@
 	"AreaVisitor.h"
 	"PerimeterVisitor.h"
 	"NameVisitor.h"
+	"ComboMediaBuilder.h"
+	"ShapeMediaBuilder.h"
 
-1481219588 source:d:\posd\shapes\src\geometrycontroller.cpp
+1483115566 source:d:\posd\shapes\src\geometrycontroller.cpp
 	"GeometryController.h"
+	<sstream>
 
 1481214005 d:\posd\shapes\include\namevisitor.h
 	<string>
@@ -560,4 +565,9 @@
 	<iostream>
 	<sstream>
 	<cstdlib>
+
+1483120303 source:d:\posd\shapes\src\command.cpp
+	"Command.h"
+
+1483120292 d:\posd\shapes\include\command.h
 

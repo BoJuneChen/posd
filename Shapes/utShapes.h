@@ -25,6 +25,7 @@
 #include "Document.h"
 #include "MyDocument.h"
 #include "MediaDirector.h"
+#include "GeometryController.h"
 
 using namespace std;
 
@@ -444,4 +445,88 @@ TEST (ninth, TestMediaDirector){
     CHECK(dv.getDescription() == desc);
 
 }
+
+//**************Final Homework Test**************
+
+TEST (finalHW, TestDefineMedia){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    CHECK(">> Circle(2,1,1)\n" == gc.GetResult());
+}
+TEST (finalHW, TestNothingShow){
+    GeometryController gc;
+    gc.ExecuteCommand("show");
+    CHECK("There is no any media.\n" == gc.GetResult());
+}
+TEST (finalHW, TestShapeShow){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    gc.ExecuteCommand("show");
+    CHECK("cSmall\n" == gc.GetResult());
+}
+TEST (finalHW, TestComboShapeShow){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("show");
+    CHECK("cSmall\nrTall\ncomboExclamation\n" == gc.GetResult());
+}
+TEST (finalHW, TestDeleteShapeFromCombo){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("delete rTall from comboExclamation");
+    CHECK("combo(c(2 1 1) )" == gc.GetComboMediaDes("comboExclamation"));
+}
+TEST (finalHW, TestDeleteShape){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("delete rTall");
+    gc.ExecuteCommand("show");
+    CHECK("cSmall\ncomboExclamation\n" == gc.GetResult());
+}
+TEST (finalHW, TestShapeArea){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    gc.ExecuteCommand("cSmall.area?");
+    CHECK(">> 3.14\n" == gc.GetResult());
+}
+TEST (finalHW, TestComboArea){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(">> 19.14\n" == gc.GetResult());
+}
+TEST (finalHW, TestShapePerimeter){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    gc.ExecuteCommand("cSmall.perimeter?");
+    CHECK(">> 6.28\n" == gc.GetResult());
+}
+TEST (finalHW, TestComboPerimeter){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("comboExclamation.perimeter?");
+    CHECK(">> 26.28\n" == gc.GetResult());
+}
+TEST (finalHW, TestSaveFileAndLoadFile){
+    GeometryController gcSave;
+    gcSave.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    gcSave.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    gcSave.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gcSave.ExecuteCommand("save comboExclamation to ¡§myShapes.txt¡¨");
+    GeometryController gcLoad;
+    gcLoad.ExecuteCommand("load ¡§myShapes.txt¡¨");
+    CHECK(gcSave.GetComboMediaDes("comboExclamation") == gcLoad.GetComboMediaDes("comboExclamation"));
+}
+
+//std::cout<< gc.GetResult()<<endl;
 #endif // UTSHAPES_H_INCLUDED

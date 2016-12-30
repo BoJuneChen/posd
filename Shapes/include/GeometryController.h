@@ -31,14 +31,16 @@ class GeometryController
         GeometryController();
         void ExecuteCommand(string command);
         void DisplayCommandIndex();
-
-        string GetArea(string name);
-        string GetPerimeter(string name);
+        string GetResult();
+        string GetComboMediaDes(string comboName);
     private:
+        string result="";
         Media* GetMediaByName(string name);
         void DefineNewMedia(std::vector<char*>);
         void AddMediaToCombo(std::vector<char*> command);
         void Show();
+        void GetArea(string name); //done
+        void GetPerimeter(string name); //done
         void DeleteMediaByName(string name);
         void DeleteMediaFromCombo(std::vector<char*> command);
         void SaveFile(std::vector<char*> command);
