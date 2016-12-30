@@ -43,6 +43,7 @@
 		<Unit filename="include/ComboShape.h" />
 		<Unit filename="include/Command.h" />
 		<Unit filename="include/CommandManager.h" />
+		<Unit filename="include/ConcerteCommand.h" />
 		<Unit filename="include/DescriptionVisitor.h" />
 		<Unit filename="include/Document.h" />
 		<Unit filename="include/GeometryController.h" />
@@ -66,6 +67,7 @@
 		<Unit filename="src/ComboShape.cpp" />
 		<Unit filename="src/Command.cpp" />
 		<Unit filename="src/CommandManager.cpp" />
+		<Unit filename="src/ConcerteCommand.cpp" />
 		<Unit filename="src/DescriptionVisitor.cpp" />
 		<Unit filename="src/Document.cpp" />
 		<Unit filename="src/GeometryController.cpp" />

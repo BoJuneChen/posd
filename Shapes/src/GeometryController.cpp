@@ -26,8 +26,28 @@ string GeometryController::GetComboMediaDes(string comboName){
     }
 }
 
+string GeometryController::GetDescs(){
+    stringstream ss;
+    for(Media *m : mediaBase){
+        DescriptionVisitor dv;
+        m->accept(&dv);
+        ss << dv.getDescription();
+    }
+    return ss.str();
+}
+
+string GeometryController::GetNames(){
+    stringstream ss;
+    for(Media *m : mediaBase){
+        NameVisitor nv;
+        m->accept(&nv);
+        ss << nv.getNames();
+    }
+    return ss.str();
+}
+
 void GeometryController::ExecuteCommand(string command){
-    string result;
+    result = "";
     std::vector<char> tempForAnalyzed(command.size()+1);
     std::vector<char*> analyzedCommand;
     strcpy(tempForAnalyzed.data(),command.c_str());
@@ -39,6 +59,8 @@ void GeometryController::ExecuteCommand(string command){
     }
     //cout << "analyzedCommand's size = " << analyzedCommand.size() <<endl;
     if(strcmp(analyzedCommand[0], "def") == 0 && (analyzedCommand.size() >= 4)){
+        cmdManager.ExecuteCMD(new ConcerteCommand(GetDescs(),GetNames(),mediaBase));
+        cout <<GetDescs()<<"00" <<GetNames()<<endl;
         DefineNewMedia(analyzedCommand);
         /*if(GetResult() != ""){
             cout << GetResult() << endl;
@@ -77,13 +99,19 @@ void GeometryController::ExecuteCommand(string command){
         //cout << GetResult() << endl;
     }
     else if((strcmp(analyzedCommand[0], "Exit")== 0) || (strcmp(analyzedCommand[0], "exit")== 0)){
-        //cout<< ">> Exiting system, Bye!" << endl;
+        cout<< ">> Exiting system, Bye!" << endl;
     }
     else if((strcmp(analyzedCommand[0], "Help")== 0) || (strcmp(analyzedCommand[0], "help")== 0)){
         DisplayCommandIndex();
     }
+    else if(strcmp(analyzedCommand[0], "Undo")== 0){
+        cout << "Undo" <<endl;
+    }
+    else if(strcmp(analyzedCommand[0], "") ==0){
+        cout << "Redo" <<endl;
+    }
     else{
-        //cout<< ">> This is an illegal command!" << endl;
+        cout<< ">> This is an illegal command!" << endl;
     }
 }
 

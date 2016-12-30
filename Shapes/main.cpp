@@ -15,12 +15,16 @@ int main()
     while (command != "Exit" && command != "exit"){
         std::cout<< ":- " ;
         getline(cin,command);
+        if(cin.eof()){
+            gc.ExecuteCommand("Undo");
+        }
         if(command != ""){
             gc.ExecuteCommand(command);
             if( gc.GetResult() !=""){
                 cout << gc.GetResult();
             }
         }
+        cin.clear();
     }
     return 0;
 }

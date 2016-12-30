@@ -22,6 +22,9 @@
 #include "NameVisitor.h"
 #include "ComboMediaBuilder.h"
 #include "ShapeMediaBuilder.h"
+#include "Command.h"
+#include "ConcerteCommand.h"
+#include "CommandManager.h"
 
 using namespace std;
 
@@ -34,6 +37,8 @@ class GeometryController
         string GetResult();
         string GetComboMediaDes(string comboName);
     private:
+        string GetDescs();
+        string GetNames();
         string result="";
         Media* GetMediaByName(string name);
         void DefineNewMedia(std::vector<char*>);
@@ -48,6 +53,7 @@ class GeometryController
         void Concrete(std::stack<MediaBuilder *> *mb, string content,std::vector<char*> name);
         vector<double> getValues(string content, int startPosition, int endPosition);
         std::vector<Media* > mediaBase;
+        CommandManager cmdManager;
 };
 
 #endif // GEOMETRYCONTROLLER_H

@@ -62,7 +62,7 @@
 	<vector>
 	<cmath>
 
-1483113366 source:d:\posd\shapes\main.cpp
+1483128108 source:d:\posd\shapes\main.cpp
 	"..\cppunitlite\TestHarness.h"
 	"utShapes.h"
 	"GeometryController.h"
@@ -383,7 +383,7 @@
 	<string>
 	<stack>
 
-1483115443 d:\posd\shapes\include\geometrycontroller.h
+1483131017 d:\posd\shapes\include\geometrycontroller.h
 	<string>
 	<cstring>
 	<vector>
@@ -406,8 +406,11 @@
 	"NameVisitor.h"
 	"ComboMediaBuilder.h"
 	"ShapeMediaBuilder.h"
+	"Command.h"
+	"ConcerteCommand.h"
+	"CommandManager.h"
 
-1483115566 source:d:\posd\shapes\src\geometrycontroller.cpp
+1483132017 source:d:\posd\shapes\src\geometrycontroller.cpp
 	"GeometryController.h"
 	<sstream>
 
@@ -569,5 +572,22 @@
 1483120303 source:d:\posd\shapes\src\command.cpp
 	"Command.h"
 
-1483120292 d:\posd\shapes\include\command.h
+1483128824 d:\posd\shapes\include\command.h
+
+1483130199 source:d:\posd\shapes\src\commandmanager.cpp
+	"CommandManager.h"
+	<iostream>
+
+1483120373 d:\posd\shapes\include\commandmanager.h
+	"Command.h"
+	<stack>
+
+1483132848 d:\posd\shapes\include\concertecommand.h
+	"Command.h"
+	<vector>
+	"Media.h"
+
+1483132865 source:d:\posd\shapes\src\concertecommand.cpp
+	"ConcerteCommand.h"
+	<iostream>
 
