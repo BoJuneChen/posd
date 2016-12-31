@@ -31,6 +31,7 @@ public :
     virtual string description();
     virtual void setName(string inputName);
     virtual string getName();
+    virtual int getSize();
 protected:
     //std::string name;
 };

@@ -21,6 +21,9 @@ public:
     string getName(){
         return name;
     }
+    int getSize(){
+        return 1;
+    }
 private:
     Text *text;
     string name;

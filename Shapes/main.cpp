@@ -16,6 +16,8 @@ int main()
         std::cout<< ":- " ;
         getline(cin,command);
         if(cin.eof()){
+            cout << "call undo" << endl;
+            cin.clear();
             gc.ExecuteCommand("Undo");
         }
         if(command != ""){
@@ -24,7 +26,7 @@ int main()
                 cout << gc.GetResult();
             }
         }
-        cin.clear();
+
     }
     return 0;
 }

@@ -62,7 +62,7 @@
 	<vector>
 	<cmath>
 
-1483128108 source:d:\posd\shapes\main.cpp
+1483165868 source:d:\posd\shapes\main.cpp
 	"..\cppunitlite\TestHarness.h"
 	"utShapes.h"
 	"GeometryController.h"
@@ -272,16 +272,16 @@
 	"Media.h"
 	<string>
 
-1481191316 d:\posd\shapes\include\combomedia.h
+1483174477 d:\posd\shapes\include\combomedia.h
 	"Media.h"
 	<string>
 
-1481191399 d:\posd\shapes\include\media.h
+1483174477 d:\posd\shapes\include\media.h
 	<string>
 	<vector>
 	"Shapes.h"
 
-1483109839 d:\posd\shapes\include\shapemedia.h
+1483174477 d:\posd\shapes\include\shapemedia.h
 	"Media.h"
 	"Shapes.h"
 	<string>
@@ -345,7 +345,7 @@
 	<string>
 	"Rectangle.h"
 
-1481191370 d:\posd\shapes\include\textmedia.h
+1483174511 d:\posd\shapes\include\textmedia.h
 	"Media.h"
 	"Text.h"
 
@@ -383,7 +383,7 @@
 	<string>
 	<stack>
 
-1483131017 d:\posd\shapes\include\geometrycontroller.h
+1483174722 d:\posd\shapes\include\geometrycontroller.h
 	<string>
 	<cstring>
 	<vector>
@@ -410,7 +410,7 @@
 	"ConcerteCommand.h"
 	"CommandManager.h"
 
-1483132017 source:d:\posd\shapes\src\geometrycontroller.cpp
+1483175550 source:d:\posd\shapes\src\geometrycontroller.cpp
 	"GeometryController.h"
 	<sstream>
 
@@ -572,22 +572,32 @@
 1483120303 source:d:\posd\shapes\src\command.cpp
 	"Command.h"
 
-1483128824 d:\posd\shapes\include\command.h
+1483167258 d:\posd\shapes\include\command.h
 
-1483130199 source:d:\posd\shapes\src\commandmanager.cpp
+1483168652 source:d:\posd\shapes\src\commandmanager.cpp
 	"CommandManager.h"
 	<iostream>
 
-1483120373 d:\posd\shapes\include\commandmanager.h
+1483167704 d:\posd\shapes\include\commandmanager.h
 	"Command.h"
 	<stack>
+	<string>
 
-1483132848 d:\posd\shapes\include\concertecommand.h
+1483175020 d:\posd\shapes\include\concertecommand.h
 	"Command.h"
 	<vector>
-	"Media.h"
-
-1483132865 source:d:\posd\shapes\src\concertecommand.cpp
-	"ConcerteCommand.h"
 	<iostream>
+	"Media.h"
+	"Rectangle.h"
+	"Circle.h"
+	"Triangle.h"
+	"ComboMedia.h"
+	"ShapeMedia.h"
+	"ComboMediaBuilder.h"
+	<string>
+	<cstring>
+	<stack>
+
+1483175274 source:d:\posd\shapes\src\concertecommand.cpp
+	"ConcerteCommand.h"
 

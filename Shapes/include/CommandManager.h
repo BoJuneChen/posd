@@ -2,6 +2,7 @@
 #define COMMANDMANAGER_H
 #include "Command.h"
 #include <stack>
+#include <string>
 
 class CommandManager
 {

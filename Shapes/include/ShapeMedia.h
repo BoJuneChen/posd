@@ -23,6 +23,9 @@ public :
     string getName(){
         return shape->getName();
     }
+    int getSize(){
+        return 1;
+    }
     //void removeMedia(Media * m){};
 };
 #endif // SHAPEMEDIA_H

@@ -3,6 +3,7 @@
 
 GeometryController::GeometryController(){
     //ctor
+    cmdManager.ExecuteCMD(new ConcerteCommand (GetDescs(),GetNames(),&mediaBase,GetComboSize()));
 }
 
 string GeometryController::GetResult(){
@@ -32,7 +33,11 @@ string GeometryController::GetDescs(){
         DescriptionVisitor dv;
         m->accept(&dv);
         ss << dv.getDescription();
+        if(m->getType() == "ComboMedia"){
+            ss << " ";
+        }
     }
+    //cout << ss.str() << endl;
     return ss.str();
 }
 
@@ -42,12 +47,29 @@ string GeometryController::GetNames(){
         NameVisitor nv;
         m->accept(&nv);
         ss << nv.getNames();
+        if(m->getType() == "ComboMedia"){
+            ss << " ";
+        }
     }
+    //cout << ss.str() << endl;
     return ss.str();
+}
+
+std::vector<int> GeometryController::GetComboSize(){
+    vector<int> comboSizes;
+    comboSizes.clear();
+    for(Media *m : mediaBase){
+        if(m->getType() == "ComboMedia"){
+            comboSizes.push_back(m->getSize());
+            //std::cout<<"m->getSize() = " << m->getSize() <<endl;
+        }
+    }
+    return comboSizes;
 }
 
 void GeometryController::ExecuteCommand(string command){
     result = "";
+    //cout <<command <<endl;
     std::vector<char> tempForAnalyzed(command.size()+1);
     std::vector<char*> analyzedCommand;
     strcpy(tempForAnalyzed.data(),command.c_str());
@@ -57,22 +79,27 @@ void GeometryController::ExecuteCommand(string command){
         analyzedCommand.push_back(tempWord);
         tempWord = strtok(NULL,"(){}=,.? \"");
     }
-    //cout << "analyzedCommand's size = " << analyzedCommand.size() <<endl;
-    if(strcmp(analyzedCommand[0], "def") == 0 && (analyzedCommand.size() >= 4)){
-        cmdManager.ExecuteCMD(new ConcerteCommand(GetDescs(),GetNames(),mediaBase));
-        cout <<GetDescs()<<"00" <<GetNames()<<endl;
+    //cout << "nalyzedCommand's size = " << analyzedCommand.size() <<endl;
+    if(strcmp(analyzedCommand[0], "Undo")== 0){
+        cout << "Undo" <<endl;
+        cmdManager.UndoCMD();
+        //string a = GetDescs();
+        //string b = GetNames();
+    }
+    else if(strcmp(analyzedCommand[0], "") ==0){
+        cout << "Redo" <<endl;
+        cmdManager.RedoCMD();
+    }
+    else if(strcmp(analyzedCommand[0], "def") == 0 && (analyzedCommand.size() >= 4)){
         DefineNewMedia(analyzedCommand);
-        /*if(GetResult() != ""){
-            cout << GetResult() << endl;
-        }*/
+        cmdManager.ExecuteCMD(new ConcerteCommand (GetDescs(),GetNames(),&mediaBase,GetComboSize()));
     }
     else if(strcmp(analyzedCommand[0], "add") == 0 && (analyzedCommand.size() == 4)){
         AddMediaToCombo(analyzedCommand);
-        //cout << GetResult() << endl;
+        cmdManager.ExecuteCMD(new ConcerteCommand (GetDescs(),GetNames(),&mediaBase,GetComboSize()));
     }
     else if(strcmp(analyzedCommand[0], "show") == 0 && (analyzedCommand.size() == 1)){
         Show();
-        //cout << GetResult();
     }
     else if(strcmp(analyzedCommand[0], "delete") == 0){
         if(analyzedCommand.size() == 2){
@@ -81,34 +108,25 @@ void GeometryController::ExecuteCommand(string command){
         else if(analyzedCommand.size() == 4){
             DeleteMediaFromCombo(analyzedCommand);
         }
+        cmdManager.ExecuteCMD(new ConcerteCommand (GetDescs(),GetNames(),&mediaBase,GetComboSize()));
     }
     else if(strcmp(analyzedCommand[0], "save") == 0 && (analyzedCommand.size() == 5)) {
         SaveFile(analyzedCommand);
-        //cout << GetResult() << endl;
     }
     else if(strcmp(analyzedCommand[0], "load") == 0 && (analyzedCommand.size() == 3)){
         LoadFromFile(analyzedCommand);
-        //cout << GetResult() << endl;
     }
     else if(strcmp(analyzedCommand[1], "area") == 0 && (analyzedCommand.size() == 2)){
         GetArea(analyzedCommand[0]);
-        //cout << GetResult() << endl;
     }
     else if(strcmp(analyzedCommand[1], "perimeter")== 0 &&(analyzedCommand.size() == 2)){
         GetPerimeter(analyzedCommand[0]);
-        //cout << GetResult() << endl;
     }
     else if((strcmp(analyzedCommand[0], "Exit")== 0) || (strcmp(analyzedCommand[0], "exit")== 0)){
         cout<< ">> Exiting system, Bye!" << endl;
     }
     else if((strcmp(analyzedCommand[0], "Help")== 0) || (strcmp(analyzedCommand[0], "help")== 0)){
         DisplayCommandIndex();
-    }
-    else if(strcmp(analyzedCommand[0], "Undo")== 0){
-        cout << "Undo" <<endl;
-    }
-    else if(strcmp(analyzedCommand[0], "") ==0){
-        cout << "Redo" <<endl;
     }
     else{
         cout<< ">> This is an illegal command!" << endl;
@@ -275,8 +293,15 @@ void GeometryController::GetPerimeter(string name){ //done
 }
 
 void GeometryController::DeleteMediaByName(string name){ //do not need to refactoring
+
+    for (Media *media : mediaBase){
+        if(media->getType() == "ComboMedia"){
+            DeleteMediaFromCombo(media->getName(),name);
+        }
+    }
     int counter =0;
     for (Media *media : mediaBase){
+
         if(media->getName() == name){
             mediaBase.erase(mediaBase.begin()+counter);
         }
@@ -284,7 +309,16 @@ void GeometryController::DeleteMediaByName(string name){ //do not need to refact
     }
     result = "";
 }
+void GeometryController::DeleteMediaFromCombo(string comboName, string deleteName){
 
+    Media * needToDeletesMedia = GetMediaByName(deleteName);
+    Media * cm = GetMediaByName(comboName);
+    if(needToDeletesMedia != nullptr){
+        if(cm->getType() == "ComboMedia"){
+            cm->removeMedia(needToDeletesMedia);
+        }
+    }
+}
 void GeometryController::DeleteMediaFromCombo(std::vector<char*> command){ //done
     stringstream tempSs;
     Media * needToDeletesMedia = GetMediaByName(command[1]);
@@ -299,7 +333,6 @@ void GeometryController::DeleteMediaFromCombo(std::vector<char*> command){ //don
             result = tempSs.str();
         }
     }
-
 }
 
 void GeometryController::SaveFile(std::vector<char*> command){ //done
@@ -361,7 +394,7 @@ void GeometryController::LoadFromFile(std::vector<char*> command){
     result = tempSs.str();
 }
 
-vector<double> GeometryController::getValues(string content, int startPosition, int endPosition){
+std::vector<double> GeometryController::getValues(string content, int startPosition, int endPosition){
     vector<double> outputValues;
     double value;
     string desc = content.substr(startPosition + 2, endPosition - (startPosition + 2)); //2 means the shape title to first value's distance

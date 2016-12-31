@@ -24,7 +24,9 @@ public:
     string getName(){
         return name;
     }
-
+    int getSize(){
+        return media.size();
+    }
 };
 
 #endif // COMBOMEDIA_H

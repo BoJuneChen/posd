@@ -39,6 +39,7 @@ class GeometryController
     private:
         string GetDescs();
         string GetNames();
+        std::vector<int> GetComboSize();
         string result="";
         Media* GetMediaByName(string name);
         void DefineNewMedia(std::vector<char*>);
@@ -47,11 +48,12 @@ class GeometryController
         void GetArea(string name); //done
         void GetPerimeter(string name); //done
         void DeleteMediaByName(string name);
+        void DeleteMediaFromCombo(string comboName, string deleteName);
         void DeleteMediaFromCombo(std::vector<char*> command);
         void SaveFile(std::vector<char*> command);
         void LoadFromFile(std::vector<char*> command);
         void Concrete(std::stack<MediaBuilder *> *mb, string content,std::vector<char*> name);
-        vector<double> getValues(string content, int startPosition, int endPosition);
+        std::vector<double> getValues(string content, int startPosition, int endPosition);
         std::vector<Media* > mediaBase;
         CommandManager cmdManager;
 };
