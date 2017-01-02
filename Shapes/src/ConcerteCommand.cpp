@@ -2,9 +2,7 @@
 
 
 void ConcerteCommand::Execute(){
-    //std::cout << "Execute Clear" << std::endl;
     if((descs == "") && (names == "")){
-        std::cout << "Clear" << std::endl;
         mediaBase->clear();
     }
     else{
@@ -17,7 +15,6 @@ void ConcerteCommand::Redo(){
 }
 
 void ConcerteCommand::Undo(){
-    //std::cout<< "Undo step6" <<std::endl;
     Execute();
 }
 
@@ -27,7 +24,6 @@ void ConcerteCommand::Concerte(){
     strcpy(tempForAnalyzed.data(),names.c_str());
     char* tempWord = strtok(tempForAnalyzed.data(),"(){}=,.? \"");
     while(tempWord != NULL){
-        //cout << tempWord <<endl;
         analyzedName.push_back(tempWord);
         tempWord = strtok(NULL,"(){}=,.? \"");
     }
@@ -36,7 +32,7 @@ void ConcerteCommand::Concerte(){
     Analyze(&mbs,descs,analyzedName);
 }
 
-bool ConcerteCommand::IsMediaNameExist(string name){ // true means is exist, false is the other
+bool ConcerteCommand::IsMediaNameExist(string name){ // true is exist, false is the other
     for (Media *media : *mediaBase){
         if(media->getName() == name){
             return true;
@@ -49,6 +45,10 @@ void ConcerteCommand::Analyze(std::stack<MediaBuilder*> *mb, string content, std
     int nameCounter = 0;
     int comboCounter = 0;
     int currentComboSize = 0;
+    /*vector<int> comboSizesToUse;
+    for(int i=0; i < comboSizes.size; i++){
+        comboSizesToUse[i] = comboSizes[i];
+    }*/
     for(unsigned int i = 0; i < content.length(); i++){
         if(content[i] == 'c'){
             if(content[i+1] == 'o' && content[i+2] == 'm' && content[i+3] == 'b' && content[i+4] == 'o'){

@@ -14,3 +14,17 @@ save comboExclamation to ¡§myShapes.txt¡¨
 load ¡§myShapes.txt¡¨
 
 def rTall = Triangle(1,10,2,8,10,20)
+
+
+def cSmall = Circle(2,1,1)
+def rTall = Rectangle(1,10,2,8)
+def comboExclamation = combo{rTall,cSmall}
+def cMale = Circle(3,2,1)
+add cMale to comboExclamation
+def cxclamation = combo{rTall,cMale}
+
+
+
+cSmall 3.14
+rTall 16
+cMale 3.14

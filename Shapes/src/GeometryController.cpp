@@ -69,6 +69,8 @@ std::vector<int> GeometryController::GetComboSize(){
 
 void GeometryController::ExecuteCommand(string command){
     result = "";
+    //int a = 25;
+    //char ctrlY = static_cast<char>(a);
     //cout <<command <<endl;
     std::vector<char> tempForAnalyzed(command.size()+1);
     std::vector<char*> analyzedCommand;
@@ -81,13 +83,14 @@ void GeometryController::ExecuteCommand(string command){
     }
     //cout << "nalyzedCommand's size = " << analyzedCommand.size() <<endl;
     if(strcmp(analyzedCommand[0], "Undo")== 0){
-        cout << "Undo" <<endl;
+        //cout << "Undo" <<endl;
+        result = "Undo\n";
         cmdManager.UndoCMD();
-        //string a = GetDescs();
-        //string b = GetNames();
     }
-    else if(strcmp(analyzedCommand[0], "") ==0){
-        cout << "Redo" <<endl;
+    else if((strcmp(analyzedCommand[0], "") ==0) || (strcmp(analyzedCommand[0], "Redo")== 0)){
+    //else if(strcmp(analyzedCommand[0], ctrlY) ==0){
+        result = "Redo\n";
+        //cout << "Redo" <<endl;
         cmdManager.RedoCMD();
     }
     else if(strcmp(analyzedCommand[0], "def") == 0 && (analyzedCommand.size() >= 4)){
@@ -147,6 +150,8 @@ void GeometryController::DisplayCommandIndex(){
     cout << "delete ¡§mediaName¡¨ in ¡§comboMediaName¡¨ --  can delete all relationships of mediaName in comboMediaName." << endl;
     cout << "help  --  can display this Index." << endl;
     cout << "exit  --  can exit this program." << endl;
+    cout << "Press Ctrl + Z -- can Undo" <<endl;
+    cout << "Press Ctrl + Y -- can Redo" <<endl;
     cout << "" <<endl;
 }
 

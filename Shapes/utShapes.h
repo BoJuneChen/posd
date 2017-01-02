@@ -26,6 +26,9 @@
 #include "MyDocument.h"
 #include "MediaDirector.h"
 #include "GeometryController.h"
+#include "CommandManager.h"
+#include "ConcerteCommand.h"
+#include "Command.h"
 
 using namespace std;
 
@@ -528,5 +531,127 @@ TEST (finalHW, TestSaveFileAndLoadFile){
     CHECK(gcSave.GetComboMediaDes("comboExclamation") == gcLoad.GetComboMediaDes("comboExclamation"));
 }
 
-//std::cout<< gc.GetResult()<<endl;
+TEST (finalHW, TestCommandExcute){
+    vector<Media*> media;
+    string descs = "combo(r(1 10 2 8) c(2 1 1) )";
+    string names = "comboExclamation{rTall cSmall }";
+    vector<int> sizes;
+    sizes.push_back(2);
+    ConcerteCommand com(descs,names,&media,sizes);
+    com.Execute();
+    CHECK(media[0]->getName() == "rTall");
+    CHECK(media[0]->getType() == "ShapeMedia");
+    DOUBLES_EQUAL(media[0]->area(), 16, epsilon);
+    CHECK(media[1]->getName() == "cSmall");
+    CHECK(media[1]->getType() == "ShapeMedia");
+    DOUBLES_EQUAL(media[1]->area(), 3.14, epsilon);
+    CHECK(media[2]->getName() == "comboExclamation");
+    CHECK(media[2]->getType() == "ComboMedia");
+    DOUBLES_EQUAL(media[2]->area(), 19.14, epsilon);
+}
+
+TEST (finalHW, TestCommandManagerDef){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    CHECK(gc.GetResult() == ">> Circle(2,1,1)\n");
+    gc.ExecuteCommand("Undo");
+    CHECK(gc.GetResult() == "Undo\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "There is no any media.\n")
+    gc.ExecuteCommand("Redo");
+    CHECK(gc.GetResult() == "Redo\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\n")
+    gc.ExecuteCommand("cSmall.area?");
+    CHECK(gc.GetResult() == ">> 3.14\n")
+}
+
+TEST (finalHW, TestCommandManagerAdd){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    CHECK(gc.GetResult() == ">> Circle(2,1,1)\n");
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    CHECK(gc.GetResult() == ">> Rectangle(1,10,2,8)\n");
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("def cMale = Circle(3,2,1)");
+    CHECK(gc.GetResult() == ">> Circle(3,2,1)\n");
+    gc.ExecuteCommand("add cMale to comboExclamation");
+    CHECK(gc.GetResult() == ">> comboExclamation = comboExclamation{rTall cSmall cMale }= combo(r(1 10 2 8) c(2 1 1) c(3 2 1) )\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 22.28\n");
+    gc.ExecuteCommand("Undo");
+    CHECK(gc.GetResult() == "Undo\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("Redo");
+    CHECK(gc.GetResult() == "Redo\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 22.28\n");
+}
+
+TEST (finalHW, TestCommandManagerDeleteFromCombo){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    CHECK(gc.GetResult() == ">> Circle(2,1,1)\n");
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    CHECK(gc.GetResult() == ">> Rectangle(1,10,2,8)\n");
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("def cMale = Circle(3,2,1)");
+    CHECK(gc.GetResult() == ">> Circle(3,2,1)\n");
+    gc.ExecuteCommand("add cMale to comboExclamation");
+    CHECK(gc.GetResult() == ">> comboExclamation = comboExclamation{rTall cSmall cMale }= combo(r(1 10 2 8) c(2 1 1) c(3 2 1) )\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 22.28\n");
+    gc.ExecuteCommand("delete cMale from comboExclamation");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\ncomboExclamation\ncMale\n");
+    gc.ExecuteCommand("Undo");
+    CHECK(gc.GetResult() == "Undo\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 22.28\n");
+    gc.ExecuteCommand("Redo");
+    CHECK(gc.GetResult() == "Redo\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+}
+TEST (finalHW, TestCommandManagerDelete){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    CHECK(gc.GetResult() == ">> Circle(2,1,1)\n");
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    CHECK(gc.GetResult() == ">> Rectangle(1,10,2,8)\n");
+    gc.ExecuteCommand("def cMale = Circle(3,2,1)");
+    CHECK(gc.GetResult() == ">> Circle(3,2,1)\n");
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("add cMale to comboExclamation");
+    CHECK(gc.GetResult() == ">> comboExclamation = comboExclamation{rTall cSmall cMale }= combo(r(1 10 2 8) c(2 1 1) c(3 2 1) )\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 22.28\n");
+    gc.ExecuteCommand("delete cMale");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\ncomboExclamation\n");
+    gc.ExecuteCommand("cMale.area?");
+    CHECK(gc.GetResult() == ">> cMale is not exist!\n");
+    gc.ExecuteCommand("Undo");
+    CHECK(gc.GetResult() == "Undo\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\ncMale\ncomboExclamation\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 22.28\n");
+    gc.ExecuteCommand("cMale.area?");
+    CHECK(gc.GetResult() == ">> 3.14\n")
+    gc.ExecuteCommand("Redo");
+    CHECK(gc.GetResult() == "Redo\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\ncomboExclamation\n");
+    gc.ExecuteCommand("cMale.area?");
+    CHECK(gc.GetResult() == ">> cMale is not exist!\n");
+}
+//std::cout<< gc.GetResult() << std::endl;
 #endif // UTSHAPES_H_INCLUDED
