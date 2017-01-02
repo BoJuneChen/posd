@@ -1,5 +1,5 @@
 #include "..\cppunitlite\TestHarness.h"
-#include "utShapes.h"
+//#include "utShapes.h"
 #include "GeometryController.h"
 #include <iostream>
 #include <string>
@@ -7,8 +7,8 @@
 
 int main()
 {
-    TestResult tr;
-    TestRegistry::runAllTests(tr);
+    //TestResult tr;
+    //TestRegistry::runAllTests(tr);
     string command;
     GeometryController gc;
     gc.DisplayCommandIndex();
