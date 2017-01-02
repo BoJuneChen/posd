@@ -653,5 +653,82 @@ TEST (finalHW, TestCommandManagerDelete){
     gc.ExecuteCommand("cMale.area?");
     CHECK(gc.GetResult() == ">> cMale is not exist!\n");
 }
+
+TEST (finalHW, TestCommandManagerAddAndDefAndDelete){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    CHECK(gc.GetResult() == ">> Circle(2,1,1)\n");
+    gc.ExecuteCommand("Undo");
+    CHECK(gc.GetResult() == "Undo\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "There is no any media.\n")
+    gc.ExecuteCommand("Redo");
+    CHECK(gc.GetResult() == "Redo\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\n")
+    gc.ExecuteCommand("cSmall.area?");
+    CHECK(gc.GetResult() == ">> 3.14\n")
+
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    CHECK(gc.GetResult() == ">> Rectangle(1,10,2,8)\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\n");
+    gc.ExecuteCommand("Undo");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\n")
+    gc.ExecuteCommand("Redo");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\n");
+
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("Undo");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> comboExclamation is not exist!\n");
+    gc.ExecuteCommand("Redo");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+
+    gc.ExecuteCommand("delete rTall from comboExclamation");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 3.14\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\ncomboExclamation\n");
+    gc.ExecuteCommand("Undo");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("Redo");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 3.14\n");
+
+    gc.ExecuteCommand("add rTall to comboExclamation");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("Undo");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 3.14\n");
+    gc.ExecuteCommand("Redo");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\ncomboExclamation\n");
+
+    gc.ExecuteCommand("delete rTall");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 3.14\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\ncomboExclamation\n");
+    gc.ExecuteCommand("Undo");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\ncomboExclamation\n");
+    gc.ExecuteCommand("Redo");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 3.14\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\ncomboExclamation\n");
+}
 //std::cout<< gc.GetResult() << std::endl;
 #endif // UTSHAPES_H_INCLUDED

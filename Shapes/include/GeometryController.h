@@ -36,6 +36,7 @@ class GeometryController
         void DisplayCommandIndex();
         string GetResult();
         string GetComboMediaDes(string comboName);
+        void ClearResult(){ result = "";}
     private:
         string GetDescs();
         string GetNames();

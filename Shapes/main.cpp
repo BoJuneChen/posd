@@ -13,6 +13,7 @@ int main()
     GeometryController gc;
     gc.DisplayCommandIndex();
     while (command != "Exit" && command != "exit"){
+        gc.ClearResult();
         std::cout<< ":- " ;
         getline(cin,command);
         if(cin.eof()){
@@ -23,7 +24,7 @@ int main()
         if(command != ""){
             gc.ExecuteCommand(command);
         }
-        if( gc.GetResult() !=""){
+        if( gc.GetResult() != ""){
             cout << gc.GetResult();
         }
     }

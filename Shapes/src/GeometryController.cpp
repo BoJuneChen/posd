@@ -298,7 +298,6 @@ void GeometryController::GetPerimeter(string name){ //done
 }
 
 void GeometryController::DeleteMediaByName(string name){ //do not need to refactoring
-
     for (Media *media : mediaBase){
         if(media->getType() == "ComboMedia"){
             DeleteMediaFromCombo(media->getName(),name);
@@ -314,6 +313,7 @@ void GeometryController::DeleteMediaByName(string name){ //do not need to refact
     }
     result = "";
 }
+
 void GeometryController::DeleteMediaFromCombo(string comboName, string deleteName){
 
     Media * needToDeletesMedia = GetMediaByName(deleteName);
@@ -324,6 +324,7 @@ void GeometryController::DeleteMediaFromCombo(string comboName, string deleteNam
         }
     }
 }
+
 void GeometryController::DeleteMediaFromCombo(std::vector<char*> command){ //done
     stringstream tempSs;
     Media * needToDeletesMedia = GetMediaByName(command[1]);
