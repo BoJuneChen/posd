@@ -151,9 +151,8 @@
 1483390017 source:d:\posd\shapes\src\rectangle.cpp
 	"Rectangle.h"
 
-1481274793 source:c:\users\fox\documents\posd\shapes\main.cpp
+1483524401 source:c:\users\fox\documents\posd\shapes\main.cpp
 	"..\cppunitlite\TestHarness.h"
-	"utShapes.h"
 	"GeometryController.h"
 	<iostream>
 	<string>
@@ -178,7 +177,7 @@
 
 1479794301 c:\users\fox\documents\posd\cppunitlite\testregistry.h
 
-1481256734 c:\users\fox\documents\posd\shapes\utshapes.h
+1483603832 c:\users\fox\documents\posd\shapes\utshapes.h
 	"..\cppunitlite\TestHarness.h"
 	"Shapes.h"
 	"Circle.h"
@@ -203,6 +202,10 @@
 	"Document.h"
 	"MyDocument.h"
 	"MediaDirector.h"
+	"GeometryController.h"
+	"CommandManager.h"
+	"ConcerteCommand.h"
+	"Command.h"
 
 1479794300 c:\users\fox\documents\posd\shapes\include\shapes.h
 	<vector>
@@ -254,7 +257,7 @@
 1479794301 source:c:\users\fox\documents\posd\shapes\src\media.cpp
 	"Media.h"
 
-1481256734 c:\users\fox\documents\posd\shapes\include\media.h
+1483524401 c:\users\fox\documents\posd\shapes\include\media.h
 	<string>
 	<vector>
 	"Shapes.h"
@@ -262,7 +265,7 @@
 1479794301 source:c:\users\fox\documents\posd\shapes\src\shapemedia.cpp
 	"ShapeMedia.h"
 
-1481271503 c:\users\fox\documents\posd\shapes\include\shapemedia.h
+1483524401 c:\users\fox\documents\posd\shapes\include\shapemedia.h
 	"Media.h"
 	"Shapes.h"
 	<string>
@@ -270,7 +273,7 @@
 1479794301 source:c:\users\fox\documents\posd\shapes\src\combomedia.cpp
 	"ComboMedia.h"
 
-1481256734 c:\users\fox\documents\posd\shapes\include\combomedia.h
+1483524401 c:\users\fox\documents\posd\shapes\include\combomedia.h
 	"Media.h"
 	<string>
 
@@ -432,7 +435,7 @@
 	"ComboMedia.h"
 	"TextMedia.h"
 
-1481256734 c:\users\fox\documents\posd\shapes\include\textmedia.h
+1483524401 c:\users\fox\documents\posd\shapes\include\textmedia.h
 	"Media.h"
 	"Text.h"
 
@@ -475,7 +478,7 @@
 	<string>
 	<stack>
 
-1483005946 c:\users\fox\documents\posd\shapes\include\geometrycontroller.h
+1483605398 c:\users\fox\documents\posd\shapes\include\geometrycontroller.h
 	<string>
 	<cstring>
 	<vector>
@@ -498,6 +501,9 @@
 	"NameVisitor.h"
 	"ComboMediaBuilder.h"
 	"ShapeMediaBuilder.h"
+	"Command.h"
+	"ConcerteCommand.h"
+	"CommandManager.h"
 
 1481256734 c:\users\fox\documents\posd\shapes\include\namevisitor.h
 	<string>
@@ -548,7 +554,7 @@
 1479794301 source:c:\users\fox\documents\posd\shapes\src\textmedia.cpp
 	"TextMedia.h"
 
-1483005023 source:c:\users\fox\documents\posd\shapes\src\geometrycontroller.cpp
+1483605380 source:c:\users\fox\documents\posd\shapes\src\geometrycontroller.cpp
 	"GeometryController.h"
 	<sstream>
 
@@ -604,6 +610,45 @@
 	"ConcerteCommand.h"
 
 1483390706 source:d:\posd\shapes\test_main.cpp
+	"..\cppunitlite\TestHarness.h"
+	"utShapes.h"
+	<iostream>
+	<string>
+	<stdio.h>
+
+1483524401 c:\users\fox\documents\posd\shapes\include\command.h
+
+1483524401 c:\users\fox\documents\posd\shapes\include\concertecommand.h
+	"Command.h"
+	<vector>
+	<iostream>
+	"Media.h"
+	"Rectangle.h"
+	"Circle.h"
+	"Triangle.h"
+	"ComboMedia.h"
+	"ShapeMedia.h"
+	"ComboMediaBuilder.h"
+	<string>
+	<cstring>
+	<stack>
+
+1483524401 c:\users\fox\documents\posd\shapes\include\commandmanager.h
+	"Command.h"
+	<stack>
+	<string>
+
+1483524401 source:c:\users\fox\documents\posd\shapes\src\command.cpp
+	"Command.h"
+
+1483524401 source:c:\users\fox\documents\posd\shapes\src\commandmanager.cpp
+	"CommandManager.h"
+	<iostream>
+
+1483524401 source:c:\users\fox\documents\posd\shapes\src\concertecommand.cpp
+	"ConcerteCommand.h"
+
+1483524401 source:c:\users\fox\documents\posd\shapes\test_main.cpp
 	"..\cppunitlite\TestHarness.h"
 	"utShapes.h"
 	<iostream>

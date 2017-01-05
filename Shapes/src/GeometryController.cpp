@@ -69,8 +69,6 @@ std::vector<int> GeometryController::GetComboSize(){
 
 void GeometryController::ExecuteCommand(string command){
     result = "";
-    //int a = 25;
-    //char ctrlY = static_cast<char>(a);
     //cout <<command <<endl;
     std::vector<char> tempForAnalyzed(command.size()+1);
     std::vector<char*> analyzedCommand;
@@ -82,57 +80,64 @@ void GeometryController::ExecuteCommand(string command){
         tempWord = strtok(NULL,"(){}=,.? \"");
     }
     //cout << "nalyzedCommand's size = " << analyzedCommand.size() <<endl;
-    if(strcmp(analyzedCommand[0], "Undo")== 0){
-        //cout << "Undo" <<endl;
-        result = "Undo\n";
-        cmdManager.UndoCMD();
-    }
-    else if((strcmp(analyzedCommand[0], "") ==0) || (strcmp(analyzedCommand[0], "Redo")== 0)){
-    //else if(strcmp(analyzedCommand[0], ctrlY) ==0){
-        result = "Redo\n";
-        //cout << "Redo" <<endl;
-        cmdManager.RedoCMD();
-    }
-    else if(strcmp(analyzedCommand[0], "def") == 0 && (analyzedCommand.size() >= 4)){
-        DefineNewMedia(analyzedCommand);
-        cmdManager.ExecuteCMD(new ConcerteCommand (GetDescs(),GetNames(),&mediaBase,GetComboSize()));
-    }
-    else if(strcmp(analyzedCommand[0], "add") == 0 && (analyzedCommand.size() == 4)){
-        AddMediaToCombo(analyzedCommand);
-        cmdManager.ExecuteCMD(new ConcerteCommand (GetDescs(),GetNames(),&mediaBase,GetComboSize()));
-    }
-    else if(strcmp(analyzedCommand[0], "show") == 0 && (analyzedCommand.size() == 1)){
-        Show();
-    }
-    else if(strcmp(analyzedCommand[0], "delete") == 0){
-        if(analyzedCommand.size() == 2){
-            DeleteMediaByName(analyzedCommand[1]);
+    if (analyzedCommand.size() == 1){
+        if(strcmp(analyzedCommand[0], "Undo")== 0){
+            result = "Undo\n";
+            cmdManager.UndoCMD();
         }
-        else if(analyzedCommand.size() == 4){
-            DeleteMediaFromCombo(analyzedCommand);
+        else if((strcmp(analyzedCommand[0], "") ==0) || (strcmp(analyzedCommand[0], "Redo")== 0)){
+            result = "Redo\n";
+            cmdManager.RedoCMD();
         }
-        cmdManager.ExecuteCMD(new ConcerteCommand (GetDescs(),GetNames(),&mediaBase,GetComboSize()));
+        else if(strcmp(analyzedCommand[0], "show") == 0){
+            Show();
+        }
+        else {
+            cout<< ">> This is an illegal command!" << endl;
+        }
     }
-    else if(strcmp(analyzedCommand[0], "save") == 0 && (analyzedCommand.size() == 5)) {
-        SaveFile(analyzedCommand);
-    }
-    else if(strcmp(analyzedCommand[0], "load") == 0 && (analyzedCommand.size() == 3)){
-        LoadFromFile(analyzedCommand);
-    }
-    else if(strcmp(analyzedCommand[1], "area") == 0 && (analyzedCommand.size() == 2)){
-        GetArea(analyzedCommand[0]);
-    }
-    else if(strcmp(analyzedCommand[1], "perimeter")== 0 &&(analyzedCommand.size() == 2)){
-        GetPerimeter(analyzedCommand[0]);
-    }
-    else if((strcmp(analyzedCommand[0], "Exit")== 0) || (strcmp(analyzedCommand[0], "exit")== 0)){
-        cout<< ">> Exiting system, Bye!" << endl;
-    }
-    else if((strcmp(analyzedCommand[0], "Help")== 0) || (strcmp(analyzedCommand[0], "help")== 0)){
-        DisplayCommandIndex();
-    }
-    else{
-        cout<< ">> This is an illegal command!" << endl;
+    else {
+        if(strcmp(analyzedCommand[0], "def") == 0 && (analyzedCommand.size() >= 4)){
+            DefineNewMedia(analyzedCommand);
+            cmdManager.ExecuteCMD(new ConcerteCommand (GetDescs(),GetNames(),&mediaBase,GetComboSize()));
+        }
+        else if(strcmp(analyzedCommand[0], "add") == 0 && (analyzedCommand.size() == 4)){
+            AddMediaToCombo(analyzedCommand);
+            cmdManager.ExecuteCMD(new ConcerteCommand (GetDescs(),GetNames(),&mediaBase,GetComboSize()));
+        }
+        else if(strcmp(analyzedCommand[0], "delete") == 0){
+            bool successFlag = false;
+            if(analyzedCommand.size() == 2){
+                successFlag = DeleteMediaByName(analyzedCommand[1]);
+            }
+            else if(analyzedCommand.size() == 4){
+                successFlag = DeleteMediaFromCombo(analyzedCommand);
+            }
+            if(successFlag){
+                cmdManager.ExecuteCMD(new ConcerteCommand (GetDescs(),GetNames(),&mediaBase,GetComboSize()));
+            }
+        }
+        else if(strcmp(analyzedCommand[0], "save") == 0 && (analyzedCommand.size() == 5)){
+            SaveFile(analyzedCommand);
+        }
+        else if(strcmp(analyzedCommand[0], "load") == 0 && (analyzedCommand.size() == 3)){
+            LoadFromFile(analyzedCommand);
+        }
+        else if(strcmp(analyzedCommand[1], "area") == 0 && (analyzedCommand.size() == 2)){
+            GetArea(analyzedCommand[0]);
+        }
+        else if(strcmp(analyzedCommand[1], "perimeter")== 0 &&(analyzedCommand.size() == 2)){
+            GetPerimeter(analyzedCommand[0]);
+        }
+        else if((strcmp(analyzedCommand[0], "Exit")== 0) || (strcmp(analyzedCommand[0], "exit")== 0)){
+            cout<< ">> Exiting system, Bye!" << endl;
+        }
+        else if((strcmp(analyzedCommand[0], "Help")== 0) || (strcmp(analyzedCommand[0], "help")== 0)){
+            DisplayCommandIndex();
+        }
+        else{
+            cout<< ">> This is an illegal command!" << endl;
+        }
     }
 }
 
@@ -297,7 +302,8 @@ void GeometryController::GetPerimeter(string name){ //done
     result = tempSs.str();
 }
 
-void GeometryController::DeleteMediaByName(string name){ //do not need to refactoring
+bool GeometryController::DeleteMediaByName(string name){ //do not need to refactoring
+    bool flag = false;
     for (Media *media : mediaBase){
         if(media->getType() == "ComboMedia"){
             DeleteMediaFromCombo(media->getName(),name);
@@ -305,13 +311,14 @@ void GeometryController::DeleteMediaByName(string name){ //do not need to refact
     }
     int counter =0;
     for (Media *media : mediaBase){
-
         if(media->getName() == name){
             mediaBase.erase(mediaBase.begin()+counter);
+            flag = true;
         }
         counter++;
     }
     result = "";
+    return flag;
 }
 
 void GeometryController::DeleteMediaFromCombo(string comboName, string deleteName){
@@ -325,13 +332,15 @@ void GeometryController::DeleteMediaFromCombo(string comboName, string deleteNam
     }
 }
 
-void GeometryController::DeleteMediaFromCombo(std::vector<char*> command){ //done
+bool GeometryController::DeleteMediaFromCombo(std::vector<char*> command){ //done
+    bool flag = false;
     stringstream tempSs;
     Media * needToDeletesMedia = GetMediaByName(command[1]);
     Media * cm = GetMediaByName(command[3]);
     if(needToDeletesMedia != nullptr){
         if(cm->getType() == "ComboMedia"){
             cm->removeMedia(needToDeletesMedia);
+            flag = true;
             result = "";
         }
         else{
@@ -339,6 +348,7 @@ void GeometryController::DeleteMediaFromCombo(std::vector<char*> command){ //don
             result = tempSs.str();
         }
     }
+    return flag;
 }
 
 void GeometryController::SaveFile(std::vector<char*> command){ //done

@@ -48,9 +48,9 @@ class GeometryController
         void Show();
         void GetArea(string name); //done
         void GetPerimeter(string name); //done
-        void DeleteMediaByName(string name);
+        bool DeleteMediaByName(string name);
         void DeleteMediaFromCombo(string comboName, string deleteName);
-        void DeleteMediaFromCombo(std::vector<char*> command);
+        bool DeleteMediaFromCombo(std::vector<char*> command);
         void SaveFile(std::vector<char*> command);
         void LoadFromFile(std::vector<char*> command);
         void Concrete(std::stack<MediaBuilder *> *mb, string content,std::vector<char*> name);

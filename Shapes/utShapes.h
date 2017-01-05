@@ -589,34 +589,7 @@ TEST (finalHW, TestCommandManagerAdd){
     CHECK(gc.GetResult() == ">> 22.28\n");
 }
 
-TEST (finalHW, TestCommandManagerDeleteFromCombo){
-    GeometryController gc;
-    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
-    CHECK(gc.GetResult() == ">> Circle(2,1,1)\n");
-    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
-    CHECK(gc.GetResult() == ">> Rectangle(1,10,2,8)\n");
-    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
-    gc.ExecuteCommand("def cMale = Circle(3,2,1)");
-    CHECK(gc.GetResult() == ">> Circle(3,2,1)\n");
-    gc.ExecuteCommand("add cMale to comboExclamation");
-    CHECK(gc.GetResult() == ">> comboExclamation = comboExclamation{rTall cSmall cMale }= combo(r(1 10 2 8) c(2 1 1) c(3 2 1) )\n");
-    gc.ExecuteCommand("comboExclamation.area?");
-    CHECK(gc.GetResult() == ">> 22.28\n");
-    gc.ExecuteCommand("delete cMale from comboExclamation");
-    gc.ExecuteCommand("comboExclamation.area?");
-    CHECK(gc.GetResult() == ">> 19.14\n");
-    gc.ExecuteCommand("show");
-    CHECK(gc.GetResult() == "cSmall\nrTall\ncomboExclamation\ncMale\n");
-    gc.ExecuteCommand("Undo");
-    CHECK(gc.GetResult() == "Undo\n");
-    gc.ExecuteCommand("comboExclamation.area?");
-    CHECK(gc.GetResult() == ">> 22.28\n");
-    gc.ExecuteCommand("Redo");
-    CHECK(gc.GetResult() == "Redo\n");
-    gc.ExecuteCommand("comboExclamation.area?");
-    CHECK(gc.GetResult() == ">> 19.14\n");
-}
-TEST (finalHW, TestCommandManagerDelete){
+TEST (finalHW, TestCommandManagerDeleteShape){
     GeometryController gc;
     gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
     CHECK(gc.GetResult() == ">> Circle(2,1,1)\n");
@@ -652,6 +625,63 @@ TEST (finalHW, TestCommandManagerDelete){
     CHECK(gc.GetResult() == "cSmall\nrTall\ncomboExclamation\n");
     gc.ExecuteCommand("cMale.area?");
     CHECK(gc.GetResult() == ">> cMale is not exist!\n");
+}
+
+TEST (finalHW, TestCommandManagerDeleteCombo){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    CHECK(gc.GetResult() == ">> Circle(2,1,1)\n");
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    CHECK(gc.GetResult() == ">> Rectangle(1,10,2,8)\n");
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("delete comboExclamation");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> comboExclamation is not exist!\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\n");
+    gc.ExecuteCommand("Undo");
+    CHECK(gc.GetResult() == "Undo\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\ncomboExclamation\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("Redo");
+    CHECK(gc.GetResult() == "Redo\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> comboExclamation is not exist!\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\n");
+
+}
+
+TEST (finalHW, TestCommandManagerDeleteShapeFromCombo){
+    GeometryController gc;
+    gc.ExecuteCommand("def cSmall = Circle(2,1,1)");
+    CHECK(gc.GetResult() == ">> Circle(2,1,1)\n");
+    gc.ExecuteCommand("def rTall = Rectangle(1,10,2,8)");
+    CHECK(gc.GetResult() == ">> Rectangle(1,10,2,8)\n");
+    gc.ExecuteCommand("def comboExclamation = combo{rTall,cSmall}");
+    gc.ExecuteCommand("def cMale = Circle(3,2,1)");
+    CHECK(gc.GetResult() == ">> Circle(3,2,1)\n");
+    gc.ExecuteCommand("add cMale to comboExclamation");
+    CHECK(gc.GetResult() == ">> comboExclamation = comboExclamation{rTall cSmall cMale }= combo(r(1 10 2 8) c(2 1 1) c(3 2 1) )\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 22.28\n");
+    gc.ExecuteCommand("delete cMale from comboExclamation");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
+    gc.ExecuteCommand("show");
+    CHECK(gc.GetResult() == "cSmall\nrTall\ncomboExclamation\ncMale\n");
+    gc.ExecuteCommand("Undo");
+    CHECK(gc.GetResult() == "Undo\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 22.28\n");
+    gc.ExecuteCommand("Redo");
+    CHECK(gc.GetResult() == "Redo\n");
+    gc.ExecuteCommand("comboExclamation.area?");
+    CHECK(gc.GetResult() == ">> 19.14\n");
 }
 
 TEST (finalHW, TestCommandManagerAddAndDefAndDelete){
